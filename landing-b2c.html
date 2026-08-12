@@ -1,0 +1,759 @@
+<!DOCTYPE html><html lang="es" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>JaiCARE - Familias</title>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary": "#385e89",
+                        "on-error-container": "#93000a",
+                        "secondary-container": "#5dfd8a",
+                        "inverse-primary": "#9acbff",
+                        "on-error": "#ffffff",
+                        "on-tertiary-fixed-variant": "#204972",
+                        "primary": "#00609a",
+                        "on-secondary": "#ffffff",
+                        "surface-container-highest": "#d2e4fd",
+                        "on-tertiary": "#ffffff",
+                        "on-surface-variant": "#404751",
+                        "outline": "#707882",
+                        "secondary": "#006d2f",
+                        "background": "#f8f9ff",
+                        "surface-tint": "#00629e",
+                        "on-primary-fixed": "#001d34",
+                        "surface-container-high": "#dbe9ff",
+                        "tertiary-container": "#5277a3",
+                        "tertiary-fixed-dim": "#a4c9fa",
+                        "surface-container": "#e4efff",
+                        "outline-variant": "#c0c7d2",
+                        "on-background": "#0a1d2f",
+                        "on-primary-fixed-variant": "#004a78",
+                        "surface-bright": "#f8f9ff",
+                        "tertiary-fixed": "#d2e4ff",
+                        "on-tertiary-fixed": "#001c37",
+                        "inverse-surface": "#213245",
+                        "surface-dim": "#cadcf4",
+                        "on-surface": "#0a1d2f",
+                        "error": "#ba1a1a",
+                        "on-secondary-fixed": "#002109",
+                        "secondary-fixed": "#66ff8e",
+                        "on-primary": "#ffffff",
+                        "surface-variant": "#d2e4fd",
+                        "primary-fixed-dim": "#9acbff",
+                        "surface-container-low": "#eef4ff",
+                        "on-secondary-fixed-variant": "#005322",
+                        "on-tertiary-container": "#fdfcff",
+                        "secondary-fixed-dim": "#3de273",
+                        "primary-fixed": "#cfe5ff",
+                        "on-primary-container": "#fdfcff",
+                        "surface-container-lowest": "#ffffff",
+                        "inverse-on-surface": "#e9f1ff",
+                        "error-container": "#ffdad6",
+                        "primary-container": "#0079c1",
+                        "surface": "#f8f9ff",
+                        "on-secondary-container": "#007232"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "1rem",
+                        "lg": "2rem",
+                        "xl": "3rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-mobile": "20px",
+                        "gutter": "24px",
+                        "margin-desktop": "64px",
+                        "unit": "8px",
+                        "float-offset": "-12px",
+                        "container-max": "1440px"
+                    },
+                    "fontFamily": {
+                        "headline-lg-mobile": ["Plus Jakarta Sans"],
+                        "label-md": ["Plus Jakarta Sans"],
+                        "display-lg": ["Plus Jakarta Sans"],
+                        "body-md": ["Plus Jakarta Sans"],
+                        "headline-md": ["Plus Jakarta Sans"],
+                        "headline-lg": ["Plus Jakarta Sans"],
+                        "body-lg": ["Plus Jakarta Sans"]
+                    },
+                    "fontSize": {
+                        "headline-lg-mobile": ["32px", { "lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "800" }],
+                        "label-md": ["14px", { "lineHeight": "1.2", "letterSpacing": "0.02em", "fontWeight": "600" }],
+                        "display-lg": ["64px", { "lineHeight": "1.1", "letterSpacing": "-0.04em", "fontWeight": "800" }],
+                        "body-md": ["18px", { "lineHeight": "1.55", "letterSpacing": "0em", "fontWeight": "400" }],
+                        "headline-md": ["28px", { "lineHeight": "1.3", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+                        "headline-lg": ["40px", { "lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "800" }],
+                        "body-lg": ["20px", { "lineHeight": "1.55", "letterSpacing": "0em", "fontWeight": "400" }]
+                    },
+                    "boxShadow": {
+                        "antigravity": "0 24px 48px rgba(15, 40, 65, 0.08)",
+                        "glow-secondary": "0 8px 24px rgba(0, 109, 47, 0.3)",
+                        "glow-primary": "0 8px 24px rgba(0, 96, 154, 0.3)"
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .glass-panel {
+            background-color: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+        }
+        .float-anim {
+            animation: float 6s ease-in-out infinite;
+        }
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-12px); }
+            100% { transform: translateY(0px); }
+        }
+        /* Reloj en video (2026-08-11): se probó un modelo .glb generado con Blender +
+           Hyper3D Rodin (auto-rotate real de 360°), pero se descartó porque la textura
+           de pantalla no quedaba legible sin retoque manual extenso. Se reemplazó por
+           un video real del producto (loop, autoplay, mudo), más simple y fiel. */
+        .watch-showcase-video {
+            width: 400px;
+            height: 400px;
+            border-radius: 2rem;
+            object-fit: cover;
+            filter: drop-shadow(0 40px 60px rgba(15, 40, 65, 0.15));
+        }
+        @media (max-width: 767px) {
+            .watch-showcase-video {
+                width: 280px;
+                height: 280px;
+            }
+        }
+        .accordion-content {
+            transition: max-height 0.3s ease-out, padding 0.3s ease;
+            max-height: 0;
+            overflow: hidden;
+        }
+        .accordion-toggle:checked ~ .accordion-content {
+            max-height: 500px; /* Arbitrary large number */
+            padding-top: 1rem;
+            padding-bottom: 1rem;
+        }
+        .accordion-toggle:checked ~ label .icon-rotate {
+            transform: rotate(180deg);
+        }
+        
+        .price-transition {
+            transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+        }
+        .price-hidden {
+            opacity: 0;
+            position: absolute;
+            pointer-events: none;
+            transform: translateY(10px);
+        }
+        .price-visible {
+            opacity: 1;
+            position: relative;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface antialiased min-h-screen overflow-x-hidden relative">
+<!-- Atmospheric Gradient Background -->
+<div class="fixed inset-0 pointer-events-none -z-10 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-colors-surface-container-highest),_transparent_50%),radial-gradient(ellipse_at_bottom_left,_var(--tw-colors-surface-variant),_transparent_50%)] opacity-70"></div>
+<!-- TopAppBar -->
+<header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-margin-desktop py-4 bg-white/70 dark:bg-surface-container/70 backdrop-blur-md border-b border-white/60 dark:border-outline-variant/20 shadow-[0_24px_48px_rgba(15,40,65,0.08)]"><a class="flex items-center hover:scale-95 transition-all duration-200 cursor-pointer w-[180px]" href="landing-b2c.html"><img alt="JaiCARE Logo" class="w-full h-auto" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBRHIVJm7WcgTn8CC5V_fuxFRsn8JgDbdNhaMAUtWgYB3dcvsb0D2TXlMHVOlFfQpkSpV4qUeK4Ordv64PnjR4Sb4PTKAkDnHZF9fwBmLYVBFWMh_xpeHPzstw-1VLrwVh29Kj5H0HAU4XeW46En8i16PflCH5jZJqXwU4nR1vs7rIkPbtKoWOAiBpaRz_EpqyK7jZ4JMqCH5esEKvcBA8AuIXRDT5e1CzRnwd_uYQbPZ8OG36SR4TMp_ZuTos_ojxgZlk"></a><div class="flex items-center gap-8"><nav class="hidden md:flex items-center gap-6"><a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors px-4 py-2" href="landing-b2b2c.html">Empresas</a><a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors px-4 py-2" href="#quienes-somos">Quiénes somos</a><a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors px-4 py-2" href="#contacto">Contacto</a></nav><a class="bg-primary text-white font-label-md text-label-md px-8 py-3 rounded-full shadow-glow-primary hover:-translate-y-1 transition-all duration-300" href="#planes">Contratar</a></div></header>
+<main class="pt-32 pb-20 px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto space-y-32">
+<!-- Hero Section -->
+<section class="flex flex-col md:flex-row items-center gap-16 relative">
+<div class="flex-1 space-y-8 z-10">
+<div class="inline-flex items-center gap-2 bg-surface-container-high px-4 py-2 rounded-full border border-white/50 shadow-sm">
+<span class="material-symbols-outlined text-primary text-sm">favorite</span>
+<span class="font-label-md text-label-md text-primary">Reloj de monitoreo</span>
+</div>
+<h1 class="font-display-lg text-display-lg text-on-surface">
+                    Saber que está bien. <br>
+<span class="text-primary">Eso es todo lo que necesitás.</span>
+</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-xl">
+                    Monitoreo de ritmo cardíaco y oxígeno en sangre, detección de caídas y GPS en tiempo real. El reloj que cuida a quienes más querés, preservando su independencia.
+                </p>
+<div class="pt-4">
+<a class="bg-[#25D366] text-white font-label-md text-label-md px-8 py-4 rounded-full flex items-center gap-3 shadow-glow-secondary hover:-translate-y-1 transition-all duration-300 text-lg w-fit" href="#contacto">
+<span class="material-symbols-outlined text-2xl">chat</span>
+                        Contactar por WhatsApp
+                    </a>
+</div>
+</div>
+<div class="flex-1 relative w-full h-[600px] flex justify-center items-center">
+<!-- Floating Glass Decorative Elements -->
+<div class="absolute inset-0 glass-panel rounded-full blur-2xl opacity-50 transform translate-x-10 -translate-y-10 w-[500px] h-[500px]"></div>
+
+<img class="w-[85%] h-[85%] object-cover rounded-[3rem] shadow-antigravity z-10 relative" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAuYLIdQ0wXBsucUVkKpAvFzqLMmUUVkIgzuE05mcJ5fMQt5A0Ic-2glfOE8Y2aIKXo1RK1D7TvTqgxdg8jpezs21urRaJAA_Byp_Dv6zhkpx9Jy3ackEOAuYy9esgZdfloz6WxqEvgtC_7ickspbW4JzmI1RwaiLnzZO0uHpSTzOWl4LmGY0kaH19k5mUw-y0OOtc-kEc4bIyHBOUiEq5vZ9ywtDYkanf_-KoI139LQ4FUbzsLuurChQ">
+</div>
+</section>
+<!-- How it works (Scrollytelling) -->
+<section class="py-20 relative">
+<div class="text-center mb-20">
+<h2 class="font-headline-lg text-headline-lg text-on-surface mb-4">¿Cómo funciona?</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant">Elegí la cobertura que mejor se adapte a tus necesidades. <br class=""> <strong class="text-primary font-bold">¡El Reloj de monitoreo avanzado está incluido SIN COSTO ADICIONAL en todos nuestros planes!</strong></p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-4 gap-8 relative">
+<!-- Connecting Line -->
+<div class="hidden md:block absolute top-1/2 left-10 right-10 h-0.5 border-t-2 border-dashed border-outline-variant/30 -z-10"></div>
+<!-- Step 1 -->
+<div class="glass-panel p-8 rounded-2xl flex flex-col items-center text-center shadow-antigravity hover:-translate-y-2 transition-transform duration-300 relative group"><div class="w-16 h-16 rounded-full bg-surface-container-highest text-primary flex items-center justify-center mb-6 group-hover:scale-110 transition-transform"><span class="material-symbols-outlined text-3xl">watch</span></div><h3 class="font-headline-md text-headline-md mb-2">1. Usar el reloj</h3><p class="font-body-md text-body-md text-on-surface-variant">Se coloca como un reloj normal. Cómodo y sin complicaciones.</p></div>
+<!-- Step 2 -->
+<div class="glass-panel p-8 rounded-2xl flex flex-col items-center text-center shadow-antigravity hover:-translate-y-2 transition-transform duration-300 relative group transform md:translate-y-12"><div class="w-16 h-16 rounded-full bg-surface-container-highest text-primary flex items-center justify-center mb-6 group-hover:scale-110 transition-transform"><span class="material-symbols-outlined text-3xl">warning</span></div><h3 class="font-headline-md text-headline-md mb-2">2. Detección</h3><p class="font-body-md text-body-md text-on-surface-variant">Sensores inteligentes detectan caídas o anomalías en tiempo real.</p></div>
+<!-- Step 3 -->
+<div class="glass-panel p-8 rounded-2xl flex flex-col items-center text-center shadow-antigravity hover:-translate-y-2 transition-transform duration-300 relative group">
+<div class="w-16 h-16 rounded-full bg-surface-container-highest text-primary flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-3xl">notifications_active</span>
+</div>
+<h3 class="font-headline-md text-headline-md mb-2">3. Aviso a la Familia</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Notificación inmediata a los familiares designados, por WhatsApp y llamada telefónica.</p>
+</div>
+<!-- Step 4 -->
+<div class="glass-panel p-8 rounded-2xl flex flex-col items-center text-center shadow-antigravity hover:-translate-y-2 transition-transform duration-300 relative group transform md:translate-y-12">
+<div class="w-16 h-16 rounded-full bg-[#25D366]/20 text-[#006d2f] flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-3xl">diversity_1</span>
+</div>
+<h3 class="font-headline-md text-headline-md mb-2">4. Respuesta</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Acción rápida y comunicación directa para asegurar su bienestar.</p>
+</div>
+</div>
+</section><section class="py-20 px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+<div class="order-2 md:order-1 space-y-8">
+<div class="space-y-4">
+<h2 class="font-display-lg text-headline-lg md:text-display-lg text-on-surface">
+          Así ve tu familia el estado en tiempo real
+        </h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant">
+          Toda la información importante, actualizada al instante, en la palma de tu mano
+        </p>
+</div>
+<ul class="space-y-4">
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary">check_circle</span>
+<span class="font-body-md text-body-md text-on-surface-variant">Ubicación en tiempo real, con dirección y precisión estimada</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary">check_circle</span>
+<span class="font-body-md text-body-md text-on-surface-variant">Signos vitales: frecuencia cardíaca y actividad diaria</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary">check_circle</span>
+<span class="font-body-md text-body-md text-on-surface-variant">Estado de batería y conectividad del reloj</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary">check_circle</span>
+<span class="font-body-md text-body-md text-on-surface-variant">Podés cuidar a varias personas desde la misma cuenta</span>
+</li>
+</ul>
+</div>
+<div class="order-1 md:order-2 flex justify-center">
+<div class="relative w-full max-w-[320px] aspect-[9/19.5] bg-surface-container-highest rounded-[3rem] p-3 border-[8px] border-on-surface shadow-antigravity overflow-hidden">
+<div class="w-full h-full rounded-[2rem] overflow-hidden bg-white">
+<img alt="App Screenshot" class="w-full h-full object-cover object-top" src="https://lh3.googleusercontent.com/aida-public/AB6AXuClsKfMPy9710LW3SW4nJxHb2tyILJiTdvERtAOMpJjArmIZhGACVS69VyhDDCoztQqaVrWOW-30guxpxEnY0SclFptdM-cvPGwPvftDNhVxe-K-LhskpHzigmo29rXydNDpMv6JFVBHBZSp24V__Dubnp_YVowI53d9Ht46etWqFSn5gGuG7d6virZzCcBiwxah-OrJaZz44Gw3opsa2a5ZJelJiqcdgspLx5zlWq4lCWPprFg93H4buJ3VExopnKJ9Z8=w1080">
+<div class="absolute bottom-2 left-1/2 -translate-x-1/2 w-1/3 h-1 bg-on-surface/20 rounded-full z-30 pointer-events-none"></div></div>
+</div>
+</div>
+</div>
+</section>
+<section class="py-20 px-8 md:px-margin-desktop bg-gradient-to-br from-primary/5 to-transparent rounded-[3rem] border border-primary/10 shadow-sm max-w-6xl mx-auto space-y-6">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+<div class="space-y-6">
+<div class="w-16 h-16 bg-white rounded-full flex items-center justify-center shadow-glow-primary mb-8">
+<span class="material-symbols-outlined text-primary text-4xl" style="font-variation-settings: &quot;FILL&quot; 1;">favorite</span>
+</div>
+<h2 class="font-display-lg text-headline-lg md:text-display-lg text-on-surface">Porque su bienestar es tu tranquilidad.</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant leading-relaxed">
+    Sabemos que nada te importa más que la seguridad de quienes te cuidaron primero. En JaiCARE, no solo ofrecemos tecnología, ofrecemos la tranquilidad de saber que están bien, dándoles la independencia que aman y a ti la calma que necesitas para disfrutar cada momento con ellos.
+  </p>
+</div>
+<div class="relative group cursor-pointer">
+<img alt="Serene elderly woman enjoying independence in a park wearing JaiCARE smartwatch" class="w-full h-auto rounded-[2rem] shadow-antigravity object-cover brightness-95" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDR2ejpQeltEhXvLvOsf3NYFibaCM0c6kG3JsJFB4X5mAtPs1ayr8hJvd9VI2DlFGPPWt_yjaKaF9W9j64_Yl0LDFkJd80aAFl0Q7Rq_Xczf8S_0T4Orxe4Vp1oLtdnoVYwyngEbKazt4BM76VrPuDes97iQu1HbsB6LD2ybk2wIokyPFucXcfHS6FsBYq_v3BqBtF9qUQzw2h8fYGe4ZjyKA0yU1DzusIpmo2mPJTpD8Ogh-z9O7Ejgg">
+<!-- Placeholder de video institucional/emocional (2026-08-11): todavía no está filmado.
+     Cuando exista el archivo, reemplazar este bloque completo (img + overlay) por
+     <video poster="..." controls> o el embed que corresponda, manteniendo el
+     rounded-[2rem] shadow-antigravity del resto de la landing. Ver [[jaicare-proyecto]]. -->
+<div class="absolute inset-0 rounded-[2rem] bg-on-surface/10 flex items-center justify-center transition-colors group-hover:bg-on-surface/20">
+<div class="w-20 h-20 md:w-24 md:h-24 glass-panel rounded-full flex items-center justify-center shadow-antigravity transition-transform group-hover:scale-105">
+<span class="material-symbols-outlined text-primary text-5xl" style="font-variation-settings: &quot;FILL&quot; 1;">play_arrow</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Benefits Grid Detailed -->
+<section class="py-20">
+<h2 class="font-headline-lg text-headline-lg text-on-surface mb-16 text-center">Todo lo que necesitás en una solución integral</h2>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<!-- Card 1 -->
+<div class="glass-panel p-8 rounded-[2rem] shadow-sm hover:shadow-antigravity hover:-translate-y-2 transition-all duration-300 flex flex-col gap-4">
+<div class="text-4xl mb-2">🧘‍♀️</div>
+<h3 class="font-headline-md text-headline-md">Tranquilidad total las 24hs</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Tranquilidad absoluta sabiendo que un sistema inteligente vela por tus seres queridos de manera continua. Monitoreo constante sin interferir en su rutina diaria, permitiéndoles mantener su independencia con seguridad.</p>
+</div>
+<!-- Card 2 (Spans 2 columns on desktop) -->
+<div class="glass-panel p-8 rounded-[2rem] shadow-sm hover:shadow-antigravity hover:-translate-y-2 transition-all duration-300 flex flex-col gap-4 md:col-span-2 relative overflow-hidden bg-gradient-to-br from-white/70 to-surface-container-highest/50">
+<div class="text-4xl mb-2 z-10">📍</div>
+<h3 class="font-headline-md text-headline-md z-10">Localización GPS precisa y zonas seguras</h3>
+<p class="font-body-md text-body-md text-on-surface-variant z-10 max-w-md">Conocé su ubicación exacta en tiempo real. Configura geocercas (zonas seguras) para recibir notificaciones si salen o entran a lugares específicos. Ideal para personas activas, salidas, paseos o prevención de desorientación.</p>
+</div>
+<!-- Card 3 -->
+<div class="glass-panel p-8 rounded-[2rem] shadow-sm hover:shadow-antigravity hover:-translate-y-2 transition-all duration-300 flex flex-col gap-4">
+<div class="text-4xl mb-2">⚠️</div>
+<h3 class="font-headline-md text-headline-md">Detección de Caídas</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Algoritmos avanzados que distinguen entre movimientos normales y caídas reales. Alerta automática al grupo familiar apenas se detecta un impacto, sin necesidad de pulsar ningún botón.</p>
+</div>
+<!-- Card 3b -->
+<div class="glass-panel p-8 rounded-[2rem] shadow-sm hover:shadow-antigravity hover:-translate-y-2 transition-all duration-300 flex flex-col gap-4">
+<div class="text-4xl mb-2">🆘</div>
+<h3 class="font-headline-md text-headline-md">Botón SOS</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">El reloj tiene un botón de emergencia: manteniéndolo presionado unos segundos, envía una alerta inmediata al grupo familiar.</p>
+</div>
+<!-- Card A -->
+<div class="glass-panel p-8 rounded-[2rem] shadow-sm hover:shadow-antigravity hover:-translate-y-2 transition-all duration-300 flex flex-col gap-4">
+<div class="text-4xl mb-2">💓</div>
+<h3 class="font-headline-md text-headline-md">Monitoreo de Ritmo Cardíaco</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Seguimiento continuo de la frecuencia cardíaca. Recibí alertas si se detectan valores fuera de lo normal, para actuar a tiempo.</p>
+</div>
+<!-- Card B -->
+<div class="glass-panel p-8 rounded-[2rem] shadow-sm hover:shadow-antigravity hover:-translate-y-2 transition-all duration-300 flex flex-col gap-4">
+<div class="text-4xl mb-2">🩸</div>
+<h3 class="font-headline-md text-headline-md">Oxigenación en Sangre (SpO2)</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Mide el nivel de oxígeno en sangre las 24 horas. Una función clave para detectar problemas respiratorios o cardiovasculares a tiempo.</p>
+</div>
+<!-- Card 4 -->
+<div class="glass-panel p-8 rounded-[2rem] shadow-sm hover:shadow-antigravity hover:-translate-y-2 transition-all duration-300 flex flex-col gap-4">
+<div class="text-4xl mb-2">🔋</div>
+<h3 class="font-headline-md text-headline-md">Batería de larga duración</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Diseñado para durar varios días con una sola carga. Sistema de carga magnética súper sencillo, ideal para personas con movilidad reducida o problemas de visión, minimizando las preocupaciones diarias.</p>
+</div>
+<!-- Card 5 -->
+<div class="glass-panel p-8 rounded-[2rem] shadow-sm hover:shadow-antigravity hover:-translate-y-2 transition-all duration-300 flex flex-col gap-4">
+<div class="text-4xl mb-2">💧</div>
+<h3 class="font-headline-md text-headline-md">100% Resistente al agua (IP67)</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Totalmente apto para la ducha, el baño y el uso diario continuo. No necesitan quitárselo en ningún momento, garantizando protección incluso en los lugares de mayor riesgo de caídas del hogar.</p>
+</div>
+</div>
+</section>
+<!-- Device Showcase -->
+<section class="py-32 flex flex-col md:flex-row items-center justify-between gap-16 relative">
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-primary-fixed/30 rounded-full blur-[100px] -z-10"></div>
+<div class="flex-1 space-y-8">
+<h2 class="font-display-lg text-display-lg text-on-surface">Independencia total.<br><span class="text-primary text-headline-lg">No requiere celular.</span></h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-lg">El reloj de JaiCARE tiene conectividad propia integrada. Quien lo usa no necesita llevar un teléfono consigo ni aprender a usar aplicaciones complejas. Simplemente ponérselo y vivir su día a día con total libertad.</p>
+<ul class="space-y-4 pt-4">
+<li class="flex items-center gap-3 font-body-md text-body-md">
+<span class="material-symbols-outlined text-secondary">check_circle</span>
+                        Chip 4G LTE integrado
+                    </li>
+<li class="flex items-center gap-3 font-body-md text-body-md">
+<span class="material-symbols-outlined text-secondary">check_circle</span>
+                        Llamadas bidireccionales claras
+                    </li>
+<li class="flex items-center gap-3 font-body-md text-body-md">
+<span class="material-symbols-outlined text-secondary">check_circle</span>
+                        Pantalla de alto contraste
+                    </li>
+</ul>
+</div>
+<div class="flex-1 w-full flex justify-center relative">
+<video class="watch-showcase-video z-10" src="img/reloj-showcase.mp4" autoplay muted loop playsinline aria-label="Reloj inteligente JaiCARE, mostrando el monitoreo de ritmo cardíaco"></video>
+<!-- Floating highlight pill -->
+<div class="absolute bottom-10 right-0 glass-panel px-6 py-3 rounded-full flex items-center gap-2 shadow-antigravity z-20">
+<div class="w-3 h-3 bg-secondary rounded-full"></div>
+<span class="font-label-md text-label-md">Conectividad Propia</span>
+</div>
+</div>
+</section>
+<!-- Testimonials Section -->
+<section class="py-20">
+<h2 class="font-headline-lg text-headline-lg text-on-surface mb-16 text-center">Historias que importan</h2>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<!-- Testimonial 1 -->
+<div class="glass-panel p-8 rounded-[2rem] shadow-sm flex flex-col gap-6 relative">
+<span class="material-symbols-outlined text-primary-fixed-dim text-6xl absolute top-6 right-6 opacity-20">format_quote</span>
+<p class="font-body-md text-body-md text-on-surface-variant italic relative z-10">"Mi mamá vive sola y siempre estaba preocupada de que se cayera y no pudiera avisarme. Desde que usa JaiCARE, duermo tranquila. El mes pasado se mareó, el reloj detectó la caída y me llamó al instante."</p>
+<div class="flex items-center gap-4 mt-auto">
+<div class="w-12 h-12 bg-primary-container text-white rounded-full flex justify-center items-center font-bold text-lg">M</div>
+<div>
+<h4 class="font-label-md text-label-md text-on-surface">Mariana L.</h4>
+<p class="text-sm text-on-surface-variant">Hija de Carmen (78)</p>
+</div>
+</div>
+</div>
+<!-- Testimonial 2 -->
+<div class="glass-panel p-8 rounded-[2rem] shadow-sm flex flex-col gap-6 relative transform md:-translate-y-4">
+<span class="material-symbols-outlined text-primary-fixed-dim text-6xl absolute top-6 right-6 opacity-20">format_quote</span>
+<p class="font-body-md text-body-md text-on-surface-variant italic relative z-10">"A mi papá le diagnosticaron principio de Alzheimer, pero le encanta salir a caminar. Con la función de GPS de JaiCARE, le damos su espacio y nosotros sabemos siempre dónde está. Nos devolvió la paz familiar."</p>
+<div class="flex items-center gap-4 mt-auto">
+<div class="w-12 h-12 bg-secondary-container text-on-secondary-container rounded-full flex justify-center items-center font-bold text-lg">D</div>
+<div>
+<h4 class="font-label-md text-label-md text-on-surface">Diego P.</h4>
+<p class="text-sm text-on-surface-variant">Hijo de Roberto (82)</p>
+</div>
+</div>
+</div>
+<!-- Testimonial 3 -->
+<div class="glass-panel p-8 rounded-[2rem] shadow-sm flex flex-col gap-6 relative">
+<span class="material-symbols-outlined text-primary-fixed-dim text-6xl absolute top-6 right-6 opacity-20">format_quote</span>
+<p class="font-body-md text-body-md text-on-surface-variant italic relative z-10">"No quería usar 'aparatos de viejo'. Pero este reloj es muy lindo y moderno. Además de ver la hora, me siento acompañada y sé que si algo me pasa en la ducha, mis nietos lo sabrán enseguida."</p>
+<div class="flex items-center gap-4 mt-auto">
+<div class="w-12 h-12 bg-tertiary-container text-on-tertiary-container rounded-full flex justify-center items-center font-bold text-lg">S</div>
+<div>
+<h4 class="font-label-md text-label-md text-on-surface">Silvia M.</h4>
+<p class="text-sm text-on-surface-variant">Usuaria (75)</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- FAQ Section -->
+<section class="py-16 space-y-16" id="quienes-somos">
+<div class="max-w-3xl mx-auto text-center space-y-6">
+<h2 class="font-headline-lg text-headline-lg text-on-surface">Quiénes somos</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant leading-relaxed">Somos un grupo con más de 10 años de trayectoria en comunicaciones digitales y especialización en el sector de la salud. Aplicamos ese conocimiento para crear tecnología que realmente cuida a las personas que más importan.</p>
+</div>
+<div class="space-y-8">
+<p class="font-label-md text-label-md text-on-surface-variant/60 text-center uppercase tracking-widest">Empresas que confían en nosotros</p>
+<div class="relative overflow-hidden py-8">
+<style>
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        .animate-marquee {
+            display: flex;
+            width: max-content;
+            animation: marquee 30s linear infinite;
+        }
+        .animate-marquee:hover { animation-play-state: paused; }
+    </style>
+<div class="animate-marquee flex items-center gap-20 opacity-70">
+<!-- First set of logos -->
+<div class="flex items-center gap-20">
+<div class="w-36 h-14 flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-300 cursor-pointer"><img alt="ICBA" class="max-h-full max-w-full object-contain" src="img/logos-empresas/icba-logo.png"></div>
+<div class="w-36 h-14 flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-300 cursor-pointer"><img alt="Medicus" class="max-h-full max-w-full object-contain" src="img/logos-empresas/medicus-logo.png"></div>
+<div class="w-36 h-14 flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-300 cursor-pointer"><img alt="Ledor Vador" class="max-h-full max-w-full object-contain" src="img/logos-empresas/ledor-logo.png"></div>
+<div class="w-36 h-14 flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-300 cursor-pointer bg-slate-800 rounded-lg px-3"><img alt="Mediter" class="max-h-full max-w-full object-contain" src="img/logos-empresas/mediter-logo.png"></div>
+<div class="w-36 h-14 flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-300 cursor-pointer"><img alt="OSPJN" class="max-h-full max-w-full object-contain" src="img/logos-empresas/ospjn-logo.png"></div>
+<div class="w-36 h-14 flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-300 cursor-pointer"><img alt="Abrines Psicosalud" class="max-h-full max-w-full object-contain" src="img/logos-empresas/abrines-logo.png"></div>
+<div class="w-36 h-14 flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-300 cursor-pointer"><img alt="ObSBA" class="max-h-full max-w-full object-contain" src="img/logos-empresas/obsba-logo.png"></div>
+</div>
+<!-- Duplicate set for seamless loop -->
+<div class="flex items-center gap-20">
+<div class="w-36 h-14 flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-300 cursor-pointer"><img alt="ICBA" class="max-h-full max-w-full object-contain" src="img/logos-empresas/icba-logo.png"></div>
+<div class="w-36 h-14 flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-300 cursor-pointer"><img alt="Medicus" class="max-h-full max-w-full object-contain" src="img/logos-empresas/medicus-logo.png"></div>
+<div class="w-36 h-14 flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-300 cursor-pointer"><img alt="Ledor Vador" class="max-h-full max-w-full object-contain" src="img/logos-empresas/ledor-logo.png"></div>
+<div class="w-36 h-14 flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-300 cursor-pointer bg-slate-800 rounded-lg px-3"><img alt="Mediter" class="max-h-full max-w-full object-contain" src="img/logos-empresas/mediter-logo.png"></div>
+<div class="w-36 h-14 flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-300 cursor-pointer"><img alt="OSPJN" class="max-h-full max-w-full object-contain" src="img/logos-empresas/ospjn-logo.png"></div>
+<div class="w-36 h-14 flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-300 cursor-pointer"><img alt="Abrines Psicosalud" class="max-h-full max-w-full object-contain" src="img/logos-empresas/abrines-logo.png"></div>
+<div class="w-36 h-14 flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-300 cursor-pointer"><img alt="ObSBA" class="max-h-full max-w-full object-contain" src="img/logos-empresas/obsba-logo.png"></div>
+</div>
+</div>
+</div>
+</div>
+</section><section class="py-20 max-w-4xl mx-auto">
+<h2 class="font-headline-lg text-headline-lg text-on-surface mb-12 text-center">Preguntas Frecuentes</h2>
+<div class="space-y-4">
+<!-- FAQ Item 1 -->
+<div class="glass-panel rounded-2xl overflow-hidden shadow-sm">
+<input class="accordion-toggle hidden" id="faq1" type="checkbox">
+<label class="flex justify-between items-center p-6 cursor-pointer hover:bg-white/40 transition-colors" for="faq1">
+<h3 class="font-headline-md text-lg text-on-surface m-0">¿Cómo funciona exactamente la detección de caídas?</h3>
+<span class="material-symbols-outlined icon-rotate transition-transform duration-300">expand_more</span>
+</label>
+<div class="accordion-content px-6 bg-white/20">
+<p class="font-body-md text-body-md text-on-surface-variant pb-6">El reloj cuenta con un acelerómetro y giroscopio integrados. Algoritmos inteligentes analizan los movimientos constantemente. Si detectan un impacto seco seguido de inmovilidad (patrón típico de una caída grave), el dispositivo emitirá una alerta sonora y visual. Si el usuario no cancela la alerta en unos segundos, se contactará automáticamente a los familiares asignados en la app.</p>
+</div>
+</div>
+<!-- FAQ Item 2 -->
+<div class="glass-panel rounded-2xl overflow-hidden shadow-sm">
+<input class="accordion-toggle hidden" id="faq2" type="checkbox">
+<label class="flex justify-between items-center p-6 cursor-pointer hover:bg-white/40 transition-colors" for="faq2">
+<h3 class="font-headline-md text-lg text-on-surface m-0">¿El usuario necesita tener un smartphone consigo?</h3>
+<span class="material-symbols-outlined icon-rotate transition-transform duration-300">expand_more</span>
+</label>
+<div class="accordion-content px-6 bg-white/20">
+<p class="font-body-md text-body-md text-on-surface-variant pb-6">No, absolutamente no. El reloj JaiCARE incluye su propio chip celular (SIM) y conectividad. Es 100% independiente. Los familiares sí instalan la aplicación en sus propios celulares para recibir las notificaciones y ver la ubicación.</p>
+</div>
+</div>
+<!-- FAQ Item 3 -->
+<div class="glass-panel rounded-2xl overflow-hidden shadow-sm">
+<input class="accordion-toggle hidden" id="faq3" type="checkbox">
+<label class="flex justify-between items-center p-6 cursor-pointer hover:bg-white/40 transition-colors" for="faq3">
+<h3 class="font-headline-md text-lg text-on-surface m-0">¿Se puede usar en la ducha?</h3>
+<span class="material-symbols-outlined icon-rotate transition-transform duration-300">expand_more</span>
+</label>
+<div class="accordion-content px-6 bg-white/20">
+<p class="font-body-md text-body-md text-on-surface-variant pb-6">Sí. El reloj tiene certificación IP67, lo que significa que es totalmente resistente al agua y al polvo. Recomendamos firmemente usarlo durante el baño y la ducha, ya que son los momentos y lugares de mayor riesgo de resbalones y caídas en el hogar.</p>
+</div>
+</div>
+<!-- FAQ Item 4 -->
+<div class="glass-panel rounded-2xl overflow-hidden shadow-sm">
+<input class="accordion-toggle hidden" id="faq4" type="checkbox">
+<label class="flex justify-between items-center p-6 cursor-pointer hover:bg-white/40 transition-colors" for="faq4">
+<h3 class="font-headline-md text-lg text-on-surface m-0">¿Qué pasa si el reloj se queda sin batería?</h3>
+<span class="material-symbols-outlined icon-rotate transition-transform duration-300">expand_more</span>
+</label>
+<div class="accordion-content px-6 bg-white/20">
+<p class="font-body-md text-body-md text-on-surface-variant pb-6">El reloj tiene una autonomía de varios días dependiendo del uso. Cuando la batería baja al 20%, los familiares reciben una notificación preventiva en su aplicación para que puedan recordarle a su ser querido que lo ponga a cargar usando el sencillo cargador magnético incluido.</p>
+</div>
+</div>
+<!-- FAQ Item 5 -->
+<div class="glass-panel rounded-2xl overflow-hidden shadow-sm">
+<input class="accordion-toggle hidden" id="faq5" type="checkbox">
+<label class="flex justify-between items-center p-6 cursor-pointer hover:bg-white/40 transition-colors" for="faq5">
+<h3 class="font-headline-md text-lg text-on-surface m-0">¿Funciona el GPS dentro de la casa?</h3>
+<span class="material-symbols-outlined icon-rotate transition-transform duration-300">expand_more</span>
+</label>
+<div class="accordion-content px-6 bg-white/20">
+<p class="font-body-md text-body-md text-on-surface-variant pb-6">El reloj utiliza posicionamiento mixto (GPS + LBS + Wi-Fi). Cuando está en exteriores, el GPS ofrece máxima precisión. En interiores, donde la señal GPS no llega, el reloj utiliza redes Wi-Fi cercanas y antenas de telefonía (LBS) para brindar una ubicación aproximada muy certera.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Pricing Section -->
+<section class="py-20 relative max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop" id="planes">
+<div class="text-center mb-12">
+<span class="font-label-md text-xs text-primary uppercase tracking-wider mb-4 block">PLANES JAI CARE</span>
+<h2 class="font-display-lg text-headline-lg md:text-display-lg text-on-surface mb-6">Cuidado inteligente para quienes más querés</h2>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-2xl mx-auto">
+      Plan mensual sin permanencia: cancelás cuando quieras. Plan anual con pago único adelantado y 10% de descuento.
+    </p>
+</div>
+<div class="flex flex-col items-center gap-8 mb-16">
+<div class="bg-[#e0f2f1] px-8 py-4 rounded-xl text-center border border-[#b2dfdb]/50" id="activation-banner">
+<p class="font-label-md text-primary">Activación por única vez: $100.000</p>
+<p class="font-body-md text-sm text-primary/70">Envío gratis</p>
+</div>
+<div class="flex items-center gap-4">
+<span class="font-label-md text-on-surface-variant opacity-50" id="label-mensual">Mensual</span>
+<div class="w-12 h-6 bg-primary rounded-full relative cursor-pointer" id="plan-toggle" onclick="togglePlans()">
+<div class="absolute left-1 top-1 w-4 h-4 bg-white rounded-full transition-transform duration-300 translate-x-6" id="toggle-knob"></div>
+</div>
+<span class="font-label-md text-on-surface-variant" id="label-anual">Anual</span>
+<span class="bg-[#e0f2f1] text-[#006d2f] text-xs font-bold px-3 py-1 rounded-full">Ahorrás 10%</span>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch">
+<!-- Plan Tranquilidad -->
+<div class="glass-panel p-8 rounded-[2rem] border border-outline-variant/30 flex flex-col">
+<div class="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center mb-6">
+<span class="material-symbols-outlined text-primary">watch</span>
+</div>
+<h3 class="font-headline-md text-2xl mb-2">Plan Tranquilidad</h3>
+<p class="font-body-md text-sm text-on-surface-variant mb-8">Lo esencial, siempre activo</p>
+<div class="mb-2 relative h-16">
+<div class="price-transition price-mensual w-full absolute price-hidden">
+<span class="font-display-lg text-4xl">$64.900</span>
+<span class="font-body-md text-on-surface-variant">/ mes</span>
+</div>
+<div class="price-transition price-anual w-full absolute price-visible"><span class="font-display-lg text-4xl">$700.920</span><span class="font-body-md text-on-surface-variant"> / año</span><p class="text-xs text-on-surface-variant/70">equivale a $58.410 por mes</p></div>
+</div>
+<div class="h-6 mb-8 relative"><p class="text-xs text-on-surface-variant/70">+ $100.000 de activación (única vez)</p></div>
+<ul class="space-y-4 mb-12 flex-grow">
+<li class="flex items-center gap-3 text-sm"><span class="material-symbols-outlined text-[#006d2f] text-lg">check</span> Botón SOS 24/7</li>
+<li class="flex items-center gap-3 text-sm"><span class="material-symbols-outlined text-[#006d2f] text-lg">check</span> Detección automática de caídas</li>
+<li class="flex items-center gap-3 text-sm"><span class="material-symbols-outlined text-[#006d2f] text-lg">check</span> Monitoreo de signos vitales</li>
+<li class="flex items-center gap-3 text-sm"><span class="material-symbols-outlined text-[#006d2f] text-lg">check</span> Alertas por evento a la familia</li>
+<li class="flex items-center gap-3 text-sm"><span class="material-symbols-outlined text-[#006d2f] text-lg">check</span> Resumen diario de estado por WhatsApp</li>
+<li class="flex items-center gap-3 text-sm"><span class="material-symbols-outlined text-[#006d2f] text-lg">check</span> Envío gratis</li>
+</ul>
+<button class="w-full py-4 rounded-xl border border-primary text-primary font-label-md hover:bg-primary/5 transition-colors">Elegir Tranquilidad</button>
+</div>
+<!-- Plan Cuidado (Featured) -->
+<div class="glass-panel p-8 rounded-[2rem] border-2 border-primary relative flex flex-col shadow-antigravity">
+<div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-primary text-white text-xs font-bold px-4 py-1 rounded-full uppercase tracking-wider">Más elegido</div>
+<div class="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center mb-6">
+<span class="material-symbols-outlined text-primary">pill</span>
+</div>
+<h3 class="font-headline-md text-2xl mb-2">Plan Cuidado</h3>
+<p class="font-body-md text-sm text-on-surface-variant mb-8">Tranquilidad + recordatorios de la rutina diaria</p>
+<div class="mb-2 relative h-16">
+<div class="price-transition price-mensual w-full absolute price-hidden">
+<span class="font-display-lg text-4xl">$84.900</span>
+<span class="font-body-md text-on-surface-variant">/ mes</span>
+</div>
+<div class="price-transition price-anual w-full absolute price-visible"><span class="font-display-lg text-4xl">$916.920</span><span class="font-body-md text-on-surface-variant"> / año</span><p class="text-xs text-on-surface-variant/70">equivale a $76.410 por mes</p></div>
+</div>
+<div class="h-6 mb-8 relative"><p class="text-xs text-on-surface-variant/70">+ $100.000 de activación (única vez)</p></div>
+<ul class="space-y-4 mb-12 flex-grow">
+<li class="flex items-center gap-3 text-sm italic text-on-surface-variant/70"><span class="material-symbols-outlined text-lg">check</span> Todo lo del Plan Tranquilidad</li>
+<li class="flex items-center gap-3 text-sm"><span class="material-symbols-outlined text-[#006d2f] text-lg">check</span> Recordatorio de medicamentos</li>
+<li class="flex items-center gap-3 text-sm"><span class="material-symbols-outlined text-[#006d2f] text-lg">check</span> Hasta 2 recordatorios diarios</li>
+</ul>
+<button class="w-full py-4 rounded-xl bg-primary text-white font-label-md shadow-glow-primary hover:opacity-90 transition-opacity">Elegir Cuidado</button>
+</div>
+<!-- Plan Compañía -->
+<div class="glass-panel p-8 rounded-[2rem] border border-outline-variant/30 flex flex-col">
+<div class="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center mb-6">
+<span class="material-symbols-outlined text-primary">chat_bubble</span>
+</div>
+<h3 class="font-headline-md text-2xl mb-2">Plan Compañía</h3>
+<p class="font-body-md text-sm text-on-surface-variant mb-8">La experiencia completa de cuidado y compañía</p>
+<div class="mb-2 relative h-16">
+<div class="price-transition price-mensual w-full absolute price-hidden">
+<span class="font-display-lg text-4xl">$114.900</span>
+<span class="font-body-md text-on-surface-variant">/ mes</span>
+</div>
+<div class="price-transition price-anual w-full absolute price-visible"><span class="font-display-lg text-4xl">$1.240.920</span><span class="font-body-md text-on-surface-variant"> / año</span><p class="text-xs text-on-surface-variant/70">equivale a $103.410 por mes</p></div>
+</div>
+<div class="h-6 mb-8 relative"><p class="text-xs text-on-surface-variant/70">+ $100.000 de activación (única vez)</p></div>
+<ul class="space-y-4 mb-12 flex-grow">
+<li class="flex items-center gap-3 text-sm italic text-on-surface-variant/70"><span class="material-symbols-outlined text-lg">check</span> Todo lo del Plan Cuidado</li>
+<li class="flex items-center gap-3 text-sm"><span class="material-symbols-outlined text-[#006d2f] text-lg">check</span> 3 llamadas semanales para conversaciones sobre temas de interés</li>
+<li class="flex items-center gap-3 text-sm"><span class="material-symbols-outlined text-[#006d2f] text-lg">check</span> Hasta 10 minutos por llamada</li>
+</ul>
+<button class="w-full py-4 rounded-xl border border-primary text-primary font-label-md hover:bg-primary/5 transition-colors">Elegir Compañía</button>
+</div>
+</div>
+<div class="mt-16 text-center">
+<p class="text-xs text-on-surface-variant/60 leading-relaxed hidden" id="footer-text-mensual">
+      Plan mensual: cobro automático por tarjeta, sin permanencia mínima — cancelás cuando quieras.<br>
+      Activación de $100.000 por única vez (incluye envío del reloj) + abono según el plan elegido.
+    </p>
+<p class="text-xs text-on-surface-variant/60 leading-relaxed" id="footer-text-anual">
+      Plan anual: pago único por adelantado, 12 meses, con 10% de descuento incluido.<br>
+      Activación de $100.000 por única vez (incluye envío del reloj).
+    </p>
+</div>
+<script>
+    let isAnual = false;
+    function togglePlans() {
+        isAnual = !isAnual;
+        
+        const knob = document.getElementById('toggle-knob');
+        const labelMensual = document.getElementById('label-mensual');
+        const labelAnual = document.getElementById('label-anual');
+        
+        const mensualPrices = document.querySelectorAll('.price-mensual');
+        const anualPrices = document.querySelectorAll('.price-anual');
+        
+        const footerMensual = document.getElementById('footer-text-mensual');
+        const footerAnual = document.getElementById('footer-text-anual');
+
+        if (isAnual) {
+            knob.classList.remove('translate-x-0');
+            knob.classList.add('translate-x-6');
+            labelMensual.classList.add('opacity-50');
+            labelAnual.classList.remove('opacity-50');
+            
+            mensualPrices.forEach(el => {
+                el.classList.remove('price-visible');
+                el.classList.add('price-hidden');
+            });
+            anualPrices.forEach(el => {
+                el.classList.remove('price-hidden');
+                el.classList.add('price-visible');
+            });
+            
+            footerMensual.classList.add('hidden');
+            footerAnual.classList.remove('hidden');
+            
+        } else {
+            knob.classList.remove('translate-x-6');
+            knob.classList.add('translate-x-0');
+            labelMensual.classList.remove('opacity-50');
+            labelAnual.classList.add('opacity-50');
+            
+            mensualPrices.forEach(el => {
+                el.classList.remove('price-hidden');
+                el.classList.add('price-visible');
+            });
+            anualPrices.forEach(el => {
+                el.classList.remove('price-visible');
+                el.classList.add('price-hidden');
+            });
+            
+            footerMensual.classList.remove('hidden');
+            footerAnual.classList.add('hidden');
+        }
+    }
+  </script>
+</section>
+<!-- Contact Section -->
+<section class="py-20 max-w-6xl mx-auto px-4" id="contacto">
+<div class="glass-panel flex flex-col md:flex-row rounded-[2rem] overflow-hidden shadow-antigravity">
+<!-- Left Side -->
+<div class="flex-1 bg-gradient-to-br from-primary to-primary-container p-12 flex flex-col justify-center rounded-l-[2rem]">
+<h2 class="font-headline-lg text-headline-lg text-white mb-2">¿Tenés alguna duda?</h2>
+<h3 class="font-headline-md text-headline-md text-white mb-6">Estamos para ayudarte</h3>
+<p class="font-body-md text-body-md text-white/80 mb-10">Si ya viste los planes arriba y te quedó alguna pregunta sobre el producto, la instalación o cómo funciona, escribinos.</p>
+<ul class="space-y-4">
+<li class="flex items-start gap-3 text-white">
+<span class="material-symbols-outlined">check</span>
+<span class="font-body-md text-body-md">Te respondemos por WhatsApp, sin vueltas</span>
+</li>
+<li class="flex items-start gap-3 text-white">
+<span class="material-symbols-outlined">check</span>
+<span class="font-body-md text-body-md">Te ayudamos a elegir el plan que mejor se adapta a tu familia</span>
+</li>
+<li class="flex items-start gap-3 text-white">
+<span class="material-symbols-outlined">check</span>
+<span class="font-body-md text-body-md">Resolvemos dudas técnicas, de instalación o de uso</span>
+</li>
+</ul>
+</div>
+<!-- Right Side -->
+<div class="flex-1 bg-white p-12 flex flex-col justify-center rounded-r-[2rem]">
+<h3 class="font-headline-md text-headline-md text-on-surface mb-2">Escribinos tu consulta</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-8">Contanos qué necesitás saber y te respondemos por WhatsApp.</p>
+<form class="space-y-6">
+<div>
+<label class="block font-label-md text-label-md text-on-surface mb-2" for="nombre">Nombre</label>
+<input class="w-full px-4 py-3 rounded-xl border border-outline-variant focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all font-body-md text-on-surface" id="nombre" placeholder="Nombre y apellido" type="text">
+</div>
+<div>
+<label class="block font-label-md text-label-md text-on-surface mb-2" for="telefono">Teléfono</label>
+<input class="w-full px-4 py-3 rounded-xl border border-outline-variant focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all font-body-md text-on-surface" id="telefono" placeholder="+54 9 11 ..." type="tel">
+</div>
+<div>
+<label class="block font-label-md text-label-md text-on-surface mb-2" for="consulta">Tu consulta</label>
+<textarea class="w-full px-4 py-3 rounded border border-outline-variant focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all font-body-md text-on-surface resize-none" id="consulta" placeholder="Ej: ¿el reloj funciona si viaja al exterior?" rows="3"></textarea>
+</div>
+<a class="w-full bg-[#25D366] text-white font-label-md text-label-md px-6 py-4 rounded-full flex items-center justify-center gap-2 shadow-glow-secondary hover:-translate-y-1 transition-all duration-300 mt-8" href="https://wa.me/5491127652373?text=Hola%2C%20tengo%20una%20consulta%20sobre%20JaiCARE" rel="noopener" target="_blank">
+<span class="material-symbols-outlined text-2xl">chat</span>
+                    Enviar consulta por WhatsApp
+                </a>
+<p class="text-center text-on-surface-variant/70 text-xs mt-4">Te respondemos en minutos por WhatsApp.</p>
+</form>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full py-20 px-margin-desktop flex flex-col md:flex-row justify-between gap-gutter bg-surface-container-low dark:bg-surface-container-lowest mt-20">
+<div class="flex flex-col gap-4">
+<div class="flex items-center w-[150px] mb-4"><img alt="JaiCARE Logo" class="w-full h-auto" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAeqenUQjH85fgN_cTLP_3kUfyX3SyingBiXAw2Tbby09rtx0cnYbzhGG0cagYEniDqziLsxA55FQnsj-4lPxB2ryblxKY3DC8qO4VryJfl3c8OpxPUDxW5ei_9xHC7KKVx2uD7jIWqBsdL2bdV201Qfq-MhV0DNeXrCVYVA-uT8eIP1BmMBhrxKXhSZre06doQNdeRrGsCfgvlyXNCjyy2l5omSoE4oXkI57RhXTwlesO-6hSR4YO-SXQ1SbsAw16BBHk"></div>
+<p class="font-body-md text-body-md text-tertiary dark:text-tertiary-fixed-dim max-w-sm">
+                © 2024 JaiCARE Care Intelligence Platform. Todos los derechos reservados.
+            </p>
+</div>
+<div class="flex flex-col md:flex-row gap-8 opacity-80 hover:opacity-100 transition-opacity">
+<a class="font-label-md text-label-md text-on-surface-variant dark:text-outline-variant hover:text-primary dark:hover:text-primary-fixed transition-colors" href="#">Contacto</a>
+<a class="font-label-md text-label-md text-on-surface-variant dark:text-outline-variant hover:text-primary dark:hover:text-primary-fixed transition-colors" href="#">Política de Privacidad</a>
+<a class="font-label-md text-label-md text-on-surface-variant dark:text-outline-variant hover:text-primary dark:hover:text-primary-fixed transition-colors" href="#">Términos de Servicio</a>
+<a class="font-label-md text-label-md text-on-surface-variant dark:text-outline-variant hover:text-primary dark:hover:text-primary-fixed transition-colors" href="#">Soporte</a>
+</div>
+</footer>
+<a class="fixed bottom-8 right-8 z-50 w-16 h-16 bg-[#25D366] text-white rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition-transform duration-300" href="https://wa.me/5491127652373?text=Hola%2C%20tengo%20una%20consulta%20sobre%20JaiCARE" rel="noopener" target="_blank"><svg class="w-7 h-7" fill="currentColor" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>WhatsApp</title><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg></a>
+
+
+
+
+</body></html>

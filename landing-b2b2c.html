@@ -1,0 +1,499 @@
+<!DOCTYPE html><html class="light" lang="es" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>JaiCARE para Empresas</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary": "#385e89",
+                        "on-error-container": "#93000a",
+                        "secondary-container": "#5dfd8a",
+                        "inverse-primary": "#9acbff",
+                        "on-error": "#ffffff",
+                        "on-tertiary-fixed-variant": "#204972",
+                        "primary": "#00609a",
+                        "on-secondary": "#ffffff",
+                        "surface-container-highest": "#d2e4fd",
+                        "on-tertiary": "#ffffff",
+                        "on-surface-variant": "#404751",
+                        "outline": "#707882",
+                        "secondary": "#006d2f",
+                        "background": "#f8f9ff",
+                        "surface-tint": "#00629e",
+                        "on-primary-fixed": "#001d34",
+                        "surface-container-high": "#dbe9ff",
+                        "tertiary-container": "#5277a3",
+                        "tertiary-fixed-dim": "#a4c9fa",
+                        "surface-container": "#e4efff",
+                        "outline-variant": "#c0c7d2",
+                        "on-background": "#0a1d2f",
+                        "on-primary-fixed-variant": "#004a78",
+                        "surface-bright": "#f8f9ff",
+                        "tertiary-fixed": "#d2e4ff",
+                        "on-tertiary-fixed": "#001c37",
+                        "inverse-surface": "#213245",
+                        "surface-dim": "#cadcf4",
+                        "on-surface": "#0a1d2f",
+                        "error": "#ba1a1a",
+                        "on-secondary-fixed": "#002109",
+                        "secondary-fixed": "#66ff8e",
+                        "on-primary": "#ffffff",
+                        "surface-variant": "#d2e4fd",
+                        "primary-fixed-dim": "#9acbff",
+                        "surface-container-low": "#eef4ff",
+                        "on-secondary-fixed-variant": "#005322",
+                        "on-tertiary-container": "#fdfcff",
+                        "secondary-fixed-dim": "#3de273",
+                        "primary-fixed": "#cfe5ff",
+                        "on-primary-container": "#fdfcff",
+                        "surface-container-lowest": "#ffffff",
+                        "inverse-on-surface": "#e9f1ff",
+                        "error-container": "#ffdad6",
+                        "primary-container": "#0079c1",
+                        "surface": "#f8f9ff",
+                        "on-secondary-container": "#007232"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "1rem",
+                        "lg": "2rem",
+                        "xl": "3rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-mobile": "20px",
+                        "margin-desktop": "64px",
+                        "stack-sm": "8px",
+                        "gutter": "24px",
+                        "stack-md": "16px",
+                        "section-padding": "80px",
+                        "container-max": "1440px",
+                        "stack-lg": "32px"
+                    },
+                    "fontFamily": {
+                        "label-bold": ["Plus Jakarta Sans"],
+                        "label-md": ["Plus Jakarta Sans"],
+                        "body-lg": ["Plus Jakarta Sans"],
+                        "display-lg": ["Plus Jakarta Sans"],
+                        "body-md": ["Plus Jakarta Sans"],
+                        "display-lg-mobile": ["Plus Jakarta Sans"],
+                        "headline-md": ["Plus Jakarta Sans"],
+                        "headline-sm": ["Plus Jakarta Sans"]
+                    },
+                    "fontSize": {
+                        "label-bold": ["14px", { "lineHeight": "20px", "fontWeight": "700" }],
+                        "label-md": ["14px", { "lineHeight": "1.2", "letterSpacing": "0.02em", "fontWeight": "600" }],
+                        "body-lg": ["20px", { "lineHeight": "1.55", "letterSpacing": "0em", "fontWeight": "400" }],
+                        "display-lg": ["64px", { "lineHeight": "1.1", "letterSpacing": "-0.04em", "fontWeight": "800" }],
+                        "body-md": ["18px", { "lineHeight": "1.55", "letterSpacing": "0em", "fontWeight": "400" }],
+                        "display-lg-mobile": ["32px", { "lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "800" }],
+                        "headline-md": ["28px", { "lineHeight": "1.3", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+                        "headline-sm": ["24px", { "lineHeight": "32px", "fontWeight": "700" }]
+                    },
+                    "boxShadow": {
+                        "antigravity": "0 24px 48px rgba(15, 40, 65, 0.08)",
+                        "glow-secondary": "0 8px 24px rgba(0, 109, 47, 0.3)",
+                        "glow-primary": "0 8px 24px rgba(0, 96, 154, 0.3)"
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            box-shadow: 0 40px 40px rgba(12, 34, 51, 0.05);
+            transition: all 0.3s ease;
+        }
+        .glass-card:hover {
+            transform: translateY(-4px);
+            box-shadow: inset 0 0 0 1px theme('colors.primary'), 0 40px 40px rgba(12, 34, 51, 0.08);
+        }
+        .antigravity-bg {
+            background-color: theme('colors.surface');
+            background-image: 
+                radial-gradient(at 0% 0%, rgba(207, 229, 252, 0.4) 0px, transparent 50%),
+                radial-gradient(at 100% 100%, rgba(207, 229, 255, 0.4) 0px, transparent 50%);
+        }
+        .logo-carousel {
+            display: flex;
+            width: 200%;
+            animation: scroll 20s linear infinite;
+        }
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        
+        .animate-marquee {
+            display: flex;
+            width: max-content;
+            animation: marquee 30s linear infinite;
+        }
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        .animate-marquee:hover { animation-play-state: paused; }
+    </style>
+</head>
+<body class="antigravity-bg text-on-surface font-body-md min-h-screen flex flex-col pt-20">
+<!-- TopNavBar -->
+<header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-margin-desktop py-4 bg-white/70 dark:bg-surface-container/70 backdrop-blur-md border-b border-white/60 dark:border-outline-variant/20 shadow-[0_24px_48px_rgba(15,40,65,0.08)]"><a class="flex items-center hover:scale-95 transition-all duration-200 cursor-pointer w-[180px]" href="landing-b2c.html"><img alt="JaiCARE Logo" class="w-full h-auto" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAyO5gM2ySDA8SL01xSdvkNco76_eM8cOzXWnR3OY6qpUyNbqErFzzUb_AYFCJkSUvaOf6X1UBJYz7-q7RHKVDoZf3e02CY7LAU3Hu30_biDBLSx7-tDPN8ZF4iC-risAMyEaDFfMU8N0aaqJmE-JT8KPGZ4JEVmLUGvzDM72k3IQVGKylvZnoVkhr-hRHJkXTv-ANQ8SlGYVQSMgQqrpy6PqMCOp1qTWSS4ZaS_CbO6LMSsECIgSe7cMYSUnnpq36D2nY"></a><div class="flex items-center gap-8"><nav class="hidden md:flex items-center gap-6"><a class="font-label-md text-label-md text-primary border-b-2 border-primary px-4 py-2" href="landing-b2b2c.html">Empresas</a><a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors px-4 py-2" href="#quienes-somos">Quiénes somos</a><a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors px-4 py-2" href="#contacto">Contacto</a></nav><a class="bg-primary text-white font-label-md text-label-md px-8 py-3 rounded-full shadow-glow-primary hover:-translate-y-1 transition-all duration-300" href="#contacto">Solicitar Propuesta</a></div></header>
+<!-- 1. HERO -->
+<section class="py-section-padding px-margin-mobile md:px-gutter max-w-container-max mx-auto">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-gutter items-center">
+<div class="text-left">
+<h1 class="font-display-lg-mobile text-display-lg-mobile md:font-display-lg md:text-display-lg text-primary mb-stack-md">
+            El beneficio que tus colaboradores van a valorar de verdad
+        </h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant mb-stack-lg">
+            Mejora la productividad y el bienestar familiar brindando tranquilidad a quienes cuidan de sus seres queridos. Una solución B2B innovadora y sin carga administrativa.
+        </p>
+<div class="flex flex-col sm:flex-row gap-4">
+<a class="bg-primary text-on-primary font-label-bold text-label-bold px-8 py-4 rounded-full hover:shadow-[0_10px_20px_rgba(0,96,154,0.3)] transition-all transform hover:-translate-y-1 inline-flex items-center justify-center" href="#contacto">
+                Solicitar propuesta para mi empresa
+                <span class="material-symbols-outlined ml-2">arrow_forward</span>
+</a>
+</div>
+</div>
+<div class="relative">
+<div class="absolute inset-0 bg-primary/10 rounded-xl blur-3xl -z-10"></div>
+<img alt="Profesional aliviado" class="w-full h-auto rounded-xl shadow-lg object-cover" src="img/b2b2c-profesional-aliviado.jpg">
+</div>
+</div>
+</section>
+<!-- 2. EL PROBLEMA -->
+<section class="py-section-padding bg-surface-container-low/50">
+<div class="px-margin-mobile md:px-gutter max-w-container-max mx-auto"><div class="grid grid-cols-1 md:grid-cols-2 gap-gutter items-center">
+<div class="relative">
+<img alt="Persona preocupada en el trabajo" class="w-full h-auto rounded-xl shadow-lg object-cover" src="img/b2b2c-persona-preocupada.jpg">
+</div>
+<div>
+<h2 class="font-headline-md text-headline-md text-left text-primary mb-stack-lg">
+                Tus mejores colaboradores también cuidan a sus padres
+            </h2>
+<div class="space-y-4">
+<div class="glass-card rounded-lg p-6 flex items-center gap-4">
+<div class="w-12 h-12 rounded-full bg-primary/10 text-primary flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-2xl">event_busy</span>
+</div>
+<div>
+<h3 class="font-headline-sm text-headline-sm text-primary">23.3%</h3>
+<p class="font-label-bold text-label-bold text-on-surface-variant">Aumento de ausentismo en cuidadores familiares.</p>
+</div>
+</div>
+<div class="glass-card rounded-lg p-6 flex items-center gap-4">
+<div class="w-12 h-12 rounded-full bg-primary/10 text-primary flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-2xl">trending_down</span>
+</div>
+<div>
+<h3 class="font-headline-sm text-headline-sm text-primary">-33%</h3>
+<p class="font-label-bold text-label-bold text-on-surface-variant">Caída en la productividad debido al estrés del cuidado.</p>
+</div>
+</div>
+<div class="glass-card rounded-lg p-6 flex items-center gap-4">
+<div class="w-12 h-12 rounded-full bg-primary/10 text-primary flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-2xl">timer_off</span>
+</div>
+<div>
+<h3 class="font-headline-sm text-headline-sm text-primary">1.2</h3>
+<p class="font-label-bold text-label-bold text-on-surface-variant">Días productivos perdidos por mes en promedio.</p>
+</div>
+</div>
+<p class="text-xs text-on-surface-variant/60 mt-4">Fuente: Value in Health (2022), basado en el National Study of Caregiving y el National Health and Aging Trends Study (EE.UU.).</p>
+</div>
+</div>
+</div></div>
+</section>
+<!-- 3. CÓMO FUNCIONA -->
+<section class="py-section-padding px-margin-mobile md:px-gutter max-w-container-max mx-auto">
+<h2 class="font-headline-md text-headline-md text-center text-primary mb-stack-lg">Cómo funciona</h2>
+<div class="grid grid-cols-1 md:grid-cols-4 gap-4 relative">
+<div class="hidden md:block absolute top-1/2 left-0 w-full h-1 bg-surface-variant -z-10 transform -translate-y-1/2"></div>
+<div class="glass-card rounded-xl p-6 relative flex flex-col items-center text-center">
+<div class="w-12 h-12 rounded-full bg-primary text-on-primary font-display-lg-mobile text-display-lg-mobile flex items-center justify-center mb-4 z-10 shadow-lg">1</div>
+<h4 class="font-headline-sm text-headline-sm mb-2">Contratación</h4>
+<p class="text-on-surface-variant">La empresa adquiere licencias según sus necesidades.</p>
+</div>
+<div class="glass-card rounded-xl p-6 relative flex flex-col items-center text-center">
+<div class="w-12 h-12 rounded-full bg-primary text-on-primary font-display-lg-mobile text-display-lg-mobile flex items-center justify-center mb-4 z-10 shadow-lg">2</div>
+<h4 class="font-headline-sm text-headline-sm mb-2">Reparto</h4>
+<p class="text-on-surface-variant">Se distribuyen los dispositivos a los empleados seleccionados.</p>
+</div>
+<div class="glass-card rounded-xl p-6 relative flex flex-col items-center text-center">
+<div class="w-12 h-12 rounded-full bg-primary text-on-primary font-display-lg-mobile text-display-lg-mobile flex items-center justify-center mb-4 z-10 shadow-lg">3</div>
+<h4 class="font-headline-sm text-headline-sm mb-2">Entrega</h4>
+<p class="text-on-surface-variant">El empleado entrega el reloj a su familiar mayor.</p>
+</div>
+<div class="glass-card rounded-xl p-6 relative flex flex-col items-center text-center">
+<div class="w-12 h-12 rounded-full bg-primary text-on-primary font-display-lg-mobile text-display-lg-mobile flex items-center justify-center mb-4 z-10 shadow-lg">4</div>
+<h4 class="font-headline-sm text-headline-sm mb-2">Tranquilidad</h4>
+<p class="text-on-surface-variant">Monitoreo 24/7 y alertas en tiempo real.</p>
+</div>
+</div>
+</section>
+<!-- 4. BENEFICIOS PARA LA EMPRESA -->
+<section class="py-section-padding bg-surface-container-low/50">
+<div class="px-margin-mobile md:px-gutter max-w-container-max mx-auto">
+<h2 class="font-headline-md text-headline-md text-center text-primary mb-stack-lg">Beneficios para la empresa</h2>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
+<div class="glass-card rounded-xl p-6 flex flex-col items-center text-center">
+<div class="w-12 h-12 rounded-full bg-primary/10 text-primary flex items-center justify-center mb-4">
+<span class="material-symbols-outlined text-2xl">group_add</span>
+</div>
+<h4 class="font-label-bold text-lg mb-2">Atracción y retención de talento</h4>
+</div>
+<div class="glass-card rounded-xl p-6 flex flex-col items-center text-center">
+<div class="w-12 h-12 rounded-full bg-primary/10 text-primary flex items-center justify-center mb-4">
+<span class="material-symbols-outlined text-2xl">trending_down</span>
+</div>
+<h4 class="font-label-bold text-lg mb-2">Reducción de ausentismo</h4>
+</div>
+<div class="glass-card rounded-xl p-6 flex flex-col items-center text-center">
+<div class="w-12 h-12 rounded-full bg-primary/10 text-primary flex items-center justify-center mb-4">
+<span class="material-symbols-outlined text-2xl">check_circle</span>
+</div>
+<h4 class="font-label-bold text-lg mb-2">Cero carga administrativa (nosotros gestionamos todo)</h4>
+</div>
+<div class="glass-card rounded-xl p-6 flex flex-col items-center text-center">
+<div class="w-12 h-12 rounded-full bg-primary/10 text-primary flex items-center justify-center mb-4">
+<span class="material-symbols-outlined text-2xl">star</span>
+</div>
+<h4 class="font-label-bold text-lg mb-2">Diferenciación frente a la competencia</h4>
+</div>
+<div class="glass-card rounded-xl p-6 flex flex-col items-center text-center">
+<div class="w-12 h-12 rounded-full bg-primary/10 text-primary flex items-center justify-center mb-4">
+<span class="material-symbols-outlined text-2xl">business</span>
+</div>
+<h4 class="font-label-bold text-lg mb-2">Fortalece tu marca empleadora</h4>
+</div>
+<div class="glass-card rounded-xl p-6 flex flex-col items-center text-center">
+<div class="w-12 h-12 rounded-full bg-primary/10 text-primary flex items-center justify-center mb-4">
+<span class="material-symbols-outlined text-2xl">trending_up</span>
+</div>
+<h4 class="font-label-bold text-lg mb-2">Aumenta la productividad de tu equipo</h4>
+</div>
+</div>
+</div>
+</section>
+<!-- 5. PRODUCTO -->
+<section class="py-section-padding">
+<div class="px-margin-mobile md:px-gutter max-w-container-max mx-auto flex flex-col md:flex-row items-center gap-gutter">
+<div class="w-full md:w-1/2 flex justify-center">
+<div class="relative">
+<div class="absolute inset-0 bg-primary/10 rounded-full blur-3xl -z-10"></div>
+<video class="w-[320px] h-[320px] md:w-[384px] md:h-[384px] rounded-[2rem] object-cover drop-shadow-2xl hover:scale-105 transition-transform duration-500" src="img/reloj-showcase.mp4" autoplay muted loop playsinline aria-label="Reloj inteligente JaiCARE, mostrando el monitoreo de ritmo cardíaco"></video>
+</div>
+</div>
+<div class="w-full md:w-1/2">
+<h2 class="font-headline-md text-headline-md text-primary mb-stack-md">Tecnología al servicio del cuidado</h2>
+<ul class="space-y-4 mb-stack-lg">
+<li class="flex items-start gap-4">
+<span class="material-symbols-outlined text-primary text-3xl mt-1">location_on</span>
+<div>
+<h4 class="font-label-bold text-lg">GPS Preciso</h4>
+<p class="text-on-surface-variant">Localización en tiempo real para mayor seguridad.</p>
+</div>
+</li>
+<li class="flex items-start gap-4">
+<span class="material-symbols-outlined text-primary text-3xl mt-1">warning</span>
+<div>
+<h4 class="font-label-bold text-lg">Detección de Caídas</h4>
+<p class="text-on-surface-variant">Alertas automáticas ante incidentes.</p>
+</div>
+</li>
+<li class="flex items-start gap-4">
+<span class="material-symbols-outlined text-primary text-3xl mt-1">favorite</span>
+<div>
+<h4 class="font-label-bold text-lg">Signos Vitales</h4>
+<p class="text-on-surface-variant">Monitoreo continuo de salud.</p>
+</div>
+</li>
+</ul>
+<a class="text-primary font-label-bold text-label-bold hover:underline inline-flex items-center" href="#">
+                    Ver características completas del dispositivo
+                    <span class="material-symbols-outlined ml-1 text-sm">open_in_new</span>
+</a>
+</div>
+</div>
+</section>
+<!-- 6. EMPRESAS QUE CONFÍAN -->
+<section class="py-section-padding bg-surface-container-low/50" id="quienes-somos">
+<div class="max-w-container-max mx-auto px-margin-mobile md:px-gutter text-center space-y-8 overflow-hidden">
+<div class="max-w-3xl mx-auto text-center space-y-6 mb-stack-lg">
+<h2 class="font-headline-md text-headline-md text-center text-primary">Quiénes somos</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant leading-relaxed">Somos un grupo con más de 10 años de trayectoria en comunicaciones digitales y especialización en el sector de la salud. Aplicamos ese conocimiento para crear tecnología que realmente cuida a las personas que más importan.</p>
+</div>
+<p class="font-label-bold text-on-surface-variant uppercase tracking-widest text-sm">Empresas que confían en nosotros</p>
+<div class="relative py-8">
+<div class="animate-marquee flex items-center gap-20 opacity-70">
+<div class="flex items-center gap-20">
+<div class="w-36 h-14 flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-300"><img alt="ICBA" class="max-h-full max-w-full object-contain" src="img/logos-empresas/icba-logo.png"></div>
+<div class="w-36 h-14 flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-300"><img alt="Medicus" class="max-h-full max-w-full object-contain" src="img/logos-empresas/medicus-logo.png"></div>
+<div class="w-36 h-14 flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-300"><img alt="Ledor Vador" class="max-h-full max-w-full object-contain" src="img/logos-empresas/ledor-logo.png"></div>
+<div class="w-36 h-14 flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-300 bg-slate-800 rounded-lg px-3"><img alt="Mediter" class="max-h-full max-w-full object-contain" src="img/logos-empresas/mediter-logo.png"></div>
+<div class="w-36 h-14 flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-300"><img alt="OSPJN" class="max-h-full max-w-full object-contain" src="img/logos-empresas/ospjn-logo.png"></div>
+<div class="w-36 h-14 flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-300"><img alt="Abrines Psicosalud" class="max-h-full max-w-full object-contain" src="img/logos-empresas/abrines-logo.png"></div>
+<div class="w-36 h-14 flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-300"><img alt="ObSBA" class="max-h-full max-w-full object-contain" src="img/logos-empresas/obsba-logo.png"></div>
+</div>
+<div class="flex items-center gap-20">
+<div class="w-36 h-14 flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-300"><img alt="ICBA" class="max-h-full max-w-full object-contain" src="img/logos-empresas/icba-logo.png"></div>
+<div class="w-36 h-14 flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-300"><img alt="Medicus" class="max-h-full max-w-full object-contain" src="img/logos-empresas/medicus-logo.png"></div>
+<div class="w-36 h-14 flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-300"><img alt="Ledor Vador" class="max-h-full max-w-full object-contain" src="img/logos-empresas/ledor-logo.png"></div>
+<div class="w-36 h-14 flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-300 bg-slate-800 rounded-lg px-3"><img alt="Mediter" class="max-h-full max-w-full object-contain" src="img/logos-empresas/mediter-logo.png"></div>
+<div class="w-36 h-14 flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-300"><img alt="OSPJN" class="max-h-full max-w-full object-contain" src="img/logos-empresas/ospjn-logo.png"></div>
+<div class="w-36 h-14 flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-300"><img alt="Abrines Psicosalud" class="max-h-full max-w-full object-contain" src="img/logos-empresas/abrines-logo.png"></div>
+<div class="w-36 h-14 flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-300"><img alt="ObSBA" class="max-h-full max-w-full object-contain" src="img/logos-empresas/obsba-logo.png"></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- 7. PLANES PARA EMPRESAS -->
+<section class="py-section-padding">
+<div class="px-margin-mobile md:px-gutter max-w-3xl mx-auto text-center">
+<h2 class="font-headline-md text-headline-md text-primary mb-stack-md">Planes para empresas</h2>
+<div class="glass-card p-8 rounded-xl flex flex-col items-center">
+<p class="font-body-lg text-body-lg text-on-surface-variant mb-6">Cada empresa es distinta. Armamos una propuesta a medida según la cantidad de colaboradores.</p>
+<a class="bg-primary text-on-primary font-label-bold text-label-bold px-8 py-4 rounded-full hover:shadow-[0_10px_20px_rgba(0,96,154,0.3)] transition-all transform hover:-translate-y-1 inline-flex items-center justify-center" href="#contacto">Solicitar cotización</a>
+</div>
+</div>
+</section>
+<!-- 8. PREGUNTAS FRECUENTES -->
+<section class="py-section-padding bg-surface-container-low/50">
+<div class="px-margin-mobile md:px-gutter max-w-3xl mx-auto">
+<h2 class="font-headline-md text-headline-md text-center text-primary mb-stack-lg">Preguntas Frecuentes</h2>
+<div class="space-y-4">
+<div class="glass-card rounded-lg overflow-hidden">
+<button class="accordion-header w-full flex justify-between items-center p-6 text-left">
+<span class="font-label-bold text-lg">¿Cómo se gestiona la entrega de los relojes a los empleados?</span>
+<span class="material-symbols-outlined text-primary">add</span>
+</button>
+<div class="hidden px-6 pb-6 text-on-surface-variant">
+<p class="">Coordinamos la logística directamente con la empresa o con cada empleado, según la preferencia de la organización.</p>
+</div>
+</div>
+<div class="glass-card rounded-lg overflow-hidden">
+<button class="accordion-header w-full flex justify-between items-center p-6 text-left">
+<span class="font-label-bold text-lg">¿La empresa recibe una factura única o por empleado?</span>
+<span class="material-symbols-outlined text-primary">add</span>
+</button>
+<div class="hidden px-6 pb-6 text-on-surface-variant">
+<p class="">Emitimos una factura consolidada mensual o anual a nombre de la empresa, facilitando la gestión administrativa.</p>
+</div>
+</div>
+<div class="glass-card rounded-lg overflow-hidden">
+<button class="accordion-header w-full flex justify-between items-center p-6 text-left">
+<span class="font-label-bold text-lg">¿Hay una cantidad mínima de empleados para contratar?</span>
+<span class="material-symbols-outlined text-primary">add</span>
+</button>
+<div class="hidden px-6 pb-6 text-on-surface-variant">
+<p class="">Trabajamos con empresas de todos los tamaños. Contactanos para armar una propuesta a medida.</p>
+</div>
+</div>
+<div class="glass-card rounded-lg overflow-hidden">
+<button class="accordion-header w-full flex justify-between items-center p-6 text-left">
+<span class="font-label-bold text-lg">¿El familiar mayor necesita instalar o configurar algo?</span>
+<span class="material-symbols-outlined text-primary">add</span>
+</button>
+<div class="hidden px-6 pb-6 text-on-surface-variant">
+<p class="">No, el reloj se entrega preconfigurado y listo para usar. Solo necesitan encenderlo.</p>
+</div>
+</div>
+<div class="glass-card rounded-lg overflow-hidden">
+<button class="accordion-header w-full flex justify-between items-center p-6 text-left">
+<span class="font-label-bold text-lg">¿Podemos dar de baja o reasignar relojes si cambia la nómina?</span>
+<span class="material-symbols-outlined text-primary">add</span>
+</button>
+<div class="hidden px-6 pb-6 text-on-surface-variant">
+<p class="">Sí, ofrecemos flexibilidad para reasignar licencias o dar de baja dispositivos según los cambios en el equipo.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- 9. CONTACTO FINAL -->
+<section class="py-section-padding border-t border-surface-variant" id="contacto">
+<div class="px-margin-mobile md:px-gutter max-w-3xl mx-auto">
+<h2 class="font-headline-md text-headline-md text-center text-primary mb-2">Hablemos de tu empresa</h2>
+<p class="text-center text-on-surface-variant mb-stack-lg">Completa el formulario y nos pondremos en contacto.</p>
+<form class="glass-card p-8 rounded-xl space-y-4">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<div>
+<label class="block font-label-bold text-label-bold mb-1 text-on-surface-variant">Nombre</label>
+<input class="w-full bg-surface border border-outline-variant rounded-full px-4 py-3 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors" type="text">
+</div>
+<div>
+<label class="block font-label-bold text-label-bold mb-1 text-on-surface-variant">Empresa</label>
+<input class="w-full bg-surface border border-outline-variant rounded-full px-4 py-3 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors" type="text">
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<div>
+<label class="block font-label-bold text-label-bold mb-1 text-on-surface-variant">Cargo</label>
+<input class="w-full bg-surface border border-outline-variant rounded-full px-4 py-3 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors" type="text">
+</div>
+<div>
+<label class="block font-label-bold text-label-bold mb-1 text-on-surface-variant">Cantidad de empleados (aproximado)</label>
+<input class="w-full bg-surface border border-outline-variant rounded-full px-4 py-3 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors" type="text">
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<div>
+<label class="block font-label-bold text-label-bold mb-1 text-on-surface-variant">Email corporativo</label>
+<input class="w-full bg-surface border border-outline-variant rounded-full px-4 py-3 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors" type="email">
+</div>
+<div>
+<label class="block font-label-bold text-label-bold mb-1 text-on-surface-variant">Teléfono</label>
+<input class="w-full bg-surface border border-outline-variant rounded-full px-4 py-3 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors" type="tel">
+</div>
+</div>
+<button class="w-full bg-primary text-on-primary font-label-bold text-label-bold px-6 py-4 rounded-full hover:bg-primary-container hover:text-on-primary-container transition-colors mt-4" type="button">
+                    Solicitar Cotización
+                </button>
+</form>
+</div>
+</section>
+<!-- Footer -->
+<footer class="w-full py-20 px-margin-desktop flex flex-col md:flex-row justify-between gap-gutter bg-surface-container-low dark:bg-surface-container-lowest mt-20">
+<div class="flex flex-col gap-4">
+<div class="flex items-center w-[150px] mb-4"><img alt="JaiCARE Logo" class="w-full h-auto" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAD_tusN72Nn4vRWaMO6edB8qfxWKTOGJ2BNvLkY8EMajvb2SyU7QLaYNUmTXNWt-5VFSiO34WVRZRiUOel5djTYD1g4izNWuVet2MqostOffYMTGRGFJs9oLHMpC1sf_SmvzA1TvbtrHLy96x5DQVjKt_VH_dTWQrATUxhG1Tp3m4HPCYk9Atwf1AmaumRnrVytq8TsVDTN17bG-cpKKmlBn2OfMIRkpIfwxTit1jnGYgZz_WIpFZFB34vN_OZEwpRQpw"></div>
+<p class="font-body-md text-body-md text-tertiary dark:text-tertiary-fixed-dim max-w-sm">
+                © 2024 JaiCARE Care Intelligence Platform. Todos los derechos reservados.
+            </p>
+</div>
+<div class="flex flex-col md:flex-row gap-8 opacity-80 hover:opacity-100 transition-opacity">
+<a class="font-label-md text-label-md text-on-surface-variant dark:text-outline-variant hover:text-primary dark:hover:text-primary-fixed transition-colors" href="#">Contacto</a>
+<a class="font-label-md text-label-md text-on-surface-variant dark:text-outline-variant hover:text-primary dark:hover:text-primary-fixed transition-colors" href="#">Política de Privacidad</a>
+<a class="font-label-md text-label-md text-on-surface-variant dark:text-outline-variant hover:text-primary dark:hover:text-primary-fixed transition-colors" href="#">Términos de Servicio</a>
+<a class="font-label-md text-label-md text-on-surface-variant dark:text-outline-variant hover:text-primary dark:hover:text-primary-fixed transition-colors" href="#">Soporte</a>
+</div>
+</footer>
+<a class="fixed bottom-8 right-8 z-50 w-16 h-16 bg-[#25D366] text-white rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition-transform duration-300" href="https://wa.me/5491127652373?text=Hola%2C%20quiero%20m%C3%A1s%20informaci%C3%B3n%20sobre%20JaiCARE%20para%20empresas" rel="noopener" target="_blank"><svg class="w-7 h-7" fill="currentColor" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>WhatsApp</title><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg></a>
+<script>
+        document.querySelectorAll('.accordion-header').forEach(button => {
+            button.addEventListener('click', () => {
+                const content = button.nextElementSibling;
+                const icon = button.querySelector('.material-symbols-outlined');
+                
+                content.classList.toggle('hidden');
+                if(content.classList.contains('hidden')) {
+                    icon.textContent = 'add';
+                } else {
+                    icon.textContent = 'remove';
+                }
+            });
+        });
+    </script>
+
+
+</body></html>
