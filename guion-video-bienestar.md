@@ -1,51 +1,74 @@
 # Su bienestar es tu tranquilidad
+
 ### Guion — Video institucional/emocional JaiCARE
 
 **Va en:** Landing B2C, sección "Porque su bienestar es tu tranquilidad"
-**Duración:** 8 segundos máximo, plano único, pensado para loop
-**Reproducción:** Clic (placeholder ya armado) — considerar pasar a autoplay+loop mudo dado lo corto, como el video de producto
-**Estado:** Por producir
+**Duración:** ~20 segundos
+**Reproducción:** Con audio (narración) — no pensado para loop mudo
+**Imagen base:** `img/vieja.jpg` (mujer mayor, parque, luz cálida de mañana, reloj JaiCARE real visible en la muñeca)
+**Estado:** Por producir (image-to-video + voz en off)
 
 ---
 
 ## Concepto
 
-**Un solo plano, sin cortes.** Con 8 segundos no entra una historia con principio y final — entra un instante. Se eligió el instante de *independencia y calma*, para complementar (no repetir) al video de producto que ya está en la sección de arriba.
+Testimonio en primera persona, en voz de la protagonista, sobre lo que significa para ella la independencia que le da el reloj — no un mensaje de venta hacia la familia, sino la mirada de la persona mayor sobre su propia libertad. Un solo plano continuo, animado a partir de la foto real (`vieja.jpg`), con movimiento sutil (viento en el pelo, parpadeo, leve sonrisa, brisa en el fondo) mientras se escucha la narración.
 
-La persona mayor, sentada en un banco de plaza, luz cálida de mañana. El reloj JaiCARE visible en la muñeca, apoyada con naturalidad. Cierra los ojos un segundo, respira el sol, los abre y sonríe apenas. Nada más pasa — y no hace falta que pase nada más.
+Complementa al video de producto de la sección de arriba: ese muestra el dispositivo, este muestra lo que el dispositivo permite sentir.
 
 ---
 
 ## Tono y dirección
 
-Lo que tiene que respetar cualquiera que filme, genere o edite esta pieza.
-
-- **Un plano, cero cortes.** 8 segundos no alcanzan para narrar con montaje — cualquier corte se siente apurado. Cámara estática o, como mucho, un empuje (push-in) casi imperceptible.
-- **Pensado para loop.** El primer y el último frame deberían parecerse (misma pose de descanso) para que al repetirse no se note el corte.
-- **Sin emergencias, sin dramatización.** El mensaje es calma, no un momento de riesgo resuelto.
-- **Sin diálogo ni texto en pantalla.** Si lleva música, algo mínimo y ambiental — nunca un jingle ni un tono de venta.
-- **Dignidad, no fragilidad.** Un gesto de disfrute (el sol, el silencio), no de necesidad de cuidado.
-
----
-
-## Plano único · 0:00–0:08
-
-**Descripción:** Banco de plaza, mañana, luz cálida entrando de costado. La persona mayor está sentada, relajada, el reloj JaiCARE visible en la muñeca apoyada sobre la pierna o el respaldo. Cierra los ojos, inclina levemente la cara hacia el sol, los vuelve a abrir y esboza una sonrisa tranquila. Fondo con leve movimiento ambiente (hojas, luz) para que no se sienta una foto congelada.
-
-**Cámara:** fija, o empuje (push-in) muy sutil de principio a fin — nunca paneo ni corte.
-
-**Loop:** que el fotograma final quede visualmente cerca del inicial (misma pose de descanso), para poder repetirse en bucle sin salto brusco.
+- **Un plano, cero cortes.** Animación continua a partir de la imagen base, sin edición de montaje.
+- **Cámara:** fija o empuje (push-in) muy sutil de principio a fin.
+- **Voz en off, no lip-sync.** La protagonista no habla a cámara — no hace falta sincronizar labios. Es narración sobre la imagen, como un testimonio pensado en voz alta.
+- **Sin dramatización ni emergencias.** El mensaje es calma y autonomía, no un riesgo resuelto.
+- **Dignidad, no fragilidad.** Mirada de disfrute y libertad, no de necesidad de cuidado.
+- **El reloj debe quedar legible** — la ventaja de partir de `vieja.jpg` es que el dispositivo real ya está en la foto, así que el generador de video solo tiene que animarlo, no inventarlo. Verificar que la herramienta no lo distorsione en los frames generados.
 
 ---
 
-## Notas de producción
+## Plano único · 0:00–0:20
 
-- **Locaciones:** hogar real (no un set corporativo), barrio o parque con luz natural, oficina contemporánea, mesa familiar.
-- **Paleta:** luz cálida y natural. Si hay margen para elegir vestuario o props, un acento sutil en el celeste (`#00609a`) o verde (`#006d2f`) de la marca suma sin forzar.
-- **Evitar iconografía clínica** — nada de guardapolvos, hospitales o sillas de ruedas, salvo que sea genuinamente representativo y no un cliché.
+**Descripción:** Mujer mayor de pie en un parque, luz cálida de mañana entrando de costado, árboles de fondo. Sonríe levemente, mirada hacia un costado, reloj JaiCARE visible en la muñeca. Movimiento sutil: brisa que mueve el pelo y las hojas de fondo, parpadeo natural, leve cambio de peso o inclinación de cabeza. Sensación de estar en medio de una caminata tranquila, no posando.
 
-> ⚠️ **Importante — el reloj en cámara, sobre todo si se genera con IA**
-> El dispositivo que se vea en pantalla tiene que ser el reloj real de JaiCARE. Esto aplica todavía más si el plano se genera con una herramienta de IA (image-to-video, tipo Higgsfield): una IA de texto-a-video va a inventar un reloj genérico o distinto al real, así que **conviene generar a partir de una foto real del producto** (image-to-video, no text-to-video puro) o directamente **no dejar que el reloj quede legible en el encuadre** (fuera de foco, de perfil, tapado por la manga) y confiar en que el video de producto de arriba ya muestra el dispositivo con claridad.
+**Cámara:** fija, o push-in muy sutil de principio a fin — nunca paneo ni corte.
+
+---
+
+## Guion de narración (voz en off)
+
+**Voz:** mujer, español rioplatense/argentino, tono cálido, pausado, cercano — no publicitario.
+**Duración de lectura:** ~20 segundos a ritmo conversacional.
+
+> "Mis hijos ya no me llaman cada cinco minutos preguntando si estoy bien. Y no es que dejaron de importarles... es que ahora, con solo mirar el reloj, ya lo saben. Yo sigo caminando, tomando sol, viviendo mi vida. Y ellos, tranquilos. Eso, para mí, también es libertad."
+
+(48 palabras — a ritmo pausado entra cómodo en 18-20 segundos)
+
+---
+
+## Prompt sugerido — generación de video (image-to-video)
+
+Para pegar en una herramienta image-to-video (Higgsfield, Runway, Kling, Pika) usando `img/vieja.jpg` como imagen base:
+
+```
+Animate this photo of an elderly woman standing in a sunlit park in the
+morning. Subtle, natural motion only: gentle breeze moving her hair and
+the leaves in the background, natural slow blinking, a soft warm smile
+forming, slight relaxed weight shift. Keep the smartwatch on her wrist
+fully visible and unchanged — do not redesign or distort it. Camera:
+static or an almost imperceptible slow push-in. No cuts, no zoom bursts,
+no extra people entering frame. Calm, warm, documentary-style motion,
+not cinematic drama. Duration: 20 seconds.
+```
+
+## Prompt sugerido — narración (TTS, ej. ElevenLabs)
+
+- **Idioma/acento:** español, voz femenina, acento argentino/rioplatense (buscar voz "Argentina" o similar en la librería de voces).
+- **Tono:** cálido, pausado, íntimo — como quien piensa en voz alta, no como locución publicitaria.
+- **Texto:** el guion de narración de arriba, tal cual.
+- **Nota:** generar el audio por separado y mezclarlo sobre el video animado en edición (no requiere lip-sync porque la protagonista no habla directo a cámara).
 
 ---
 
@@ -53,25 +76,21 @@ Lo que tiene que respetar cualquiera que filme, genere o edite esta pieza.
 
 | | |
 |---|---|
-| **Duración final** | 8 segundos máximo |
+| **Duración final** | ~20 segundos |
 | **Formato** | MP4, H.264, faststart |
-| **Audio** | Opcional, ambiental (nada de jingle/venta) |
-| **Loop** | Sí — primer y último frame deben quedar parecidos |
+| **Audio** | Narración en off, español argentino, voz femenina |
+| **Loop** | No aplica (pieza con narración, no loop mudo) |
 | **Aspect ratio** | 4:5 o 1:1 |
+| **Imagen base** | `img/vieja.jpg` |
 
 ---
 
-## Sobre herramientas de generación con IA
+## Notas de producción
 
-Se consultó si **Higgsfield AI** tiene plan gratis, por si sirve para prototipar el estilo/concepto antes de producir el video final:
-
-- **Plan gratis:** ~10 créditos/día (2 generaciones cortas aprox.), salida **con marca de agua**, solo modelos básicos, sin límite de tiempo.
-- Sirve para probar concepto y estilo, **no para el video final publicado** (por la marca de agua).
-- Planes pagos desde $15/mes (Starter, 200 créditos).
-- ⚠️ Higgsfield cambió de planes más de una vez en 2026 — confirmar pricing vigente en el sitio oficial antes de suscribirse.
-
-Fuentes: [imagine.art](https://www.imagine.art/blogs/higgsfield-ai-pricing) · [creetr.com](https://creetr.com/blog/is-higgsfield-ai-free) · [costbench.com](https://costbench.com/software/ai-video-generators/higgsfield/)
+- **Evitar iconografía clínica** — nada de guardapolvos, hospitales o sillas de ruedas.
+- **Paleta:** ya resuelta por la foto base (luz cálida, parque). Si hay margen en la mezcla de color, un acento sutil hacia el celeste (`#00609a`) o verde (`#006d2f`) de marca.
+- Verificar en el resultado final que el reloj generado siga siendo reconocible como el reloj real de JaiCARE y no una versión alterada por la IA.
 
 ---
 
-*Preparado para GrupoCesa · JaiCARE — 11 de agosto de 2026*
+*Preparado para GrupoCesa · JaiCARE — 12 de agosto de 2026*

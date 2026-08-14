@@ -107,6 +107,11 @@
         }
     </script>
 <style>
+        /* Fix (2026-08-12): body ya tenía overflow-x-hidden pero algunos navegadores
+           no lo propagan al viewport cuando body tiene position:relative — quedaba
+           scroll horizontal "fantasma" en mobile por los círculos decorativos del
+           Hero (w-[500px]/w-[800px]) que se desbordan a propósito. */
+        html { overflow-x: hidden; }
         .glass-panel {
             background-color: rgba(255, 255, 255, 0.7);
             backdrop-filter: blur(16px);
@@ -166,13 +171,34 @@
             position: relative;
             transform: translateY(0);
         }
+        /* Carruseles horizontales mobile (2026-08-12): scroll manual con snap,
+           sin flechas ni autoplay. En md+ los mismos contenedores vuelven a ser
+           grid normal (ver clases md:grid en cada sección). */
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
     </style>
 </head>
 <body class="bg-surface text-on-surface antialiased min-h-screen overflow-x-hidden relative">
 <!-- Atmospheric Gradient Background -->
 <div class="fixed inset-0 pointer-events-none -z-10 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-colors-surface-container-highest),_transparent_50%),radial-gradient(ellipse_at_bottom_left,_var(--tw-colors-surface-variant),_transparent_50%)] opacity-70"></div>
 <!-- TopAppBar -->
-<header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-margin-desktop py-4 bg-white/70 dark:bg-surface-container/70 backdrop-blur-md border-b border-white/60 dark:border-outline-variant/20 shadow-[0_24px_48px_rgba(15,40,65,0.08)]"><a class="flex items-center hover:scale-95 transition-all duration-200 cursor-pointer w-[180px]" href="landing-b2c.html"><img alt="JaiCARE Logo" class="w-full h-auto" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBRHIVJm7WcgTn8CC5V_fuxFRsn8JgDbdNhaMAUtWgYB3dcvsb0D2TXlMHVOlFfQpkSpV4qUeK4Ordv64PnjR4Sb4PTKAkDnHZF9fwBmLYVBFWMh_xpeHPzstw-1VLrwVh29Kj5H0HAU4XeW46En8i16PflCH5jZJqXwU4nR1vs7rIkPbtKoWOAiBpaRz_EpqyK7jZ4JMqCH5esEKvcBA8AuIXRDT5e1CzRnwd_uYQbPZ8OG36SR4TMp_ZuTos_ojxgZlk"></a><div class="flex items-center gap-8"><nav class="hidden md:flex items-center gap-6"><a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors px-4 py-2" href="landing-b2b2c.html">Empresas</a><a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors px-4 py-2" href="#quienes-somos">Quiénes somos</a><a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors px-4 py-2" href="#contacto">Contacto</a></nav><a class="bg-primary text-white font-label-md text-label-md px-8 py-3 rounded-full shadow-glow-primary hover:-translate-y-1 transition-all duration-300" href="#planes">Contratar</a></div></header>
+<header class="fixed top-0 left-0 w-full z-50 bg-white/70 dark:bg-surface-container/70 backdrop-blur-md border-b border-white/60 dark:border-outline-variant/20 shadow-[0_24px_48px_rgba(15,40,65,0.08)]">
+<div class="flex justify-between items-center px-margin-mobile md:px-margin-desktop py-4">
+<a class="flex items-center hover:scale-95 transition-all duration-200 cursor-pointer w-[140px] md:w-[180px]" href="landing-b2c.html"><img alt="JaiCARE Logo" class="w-full h-auto" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBRHIVJm7WcgTn8CC5V_fuxFRsn8JgDbdNhaMAUtWgYB3dcvsb0D2TXlMHVOlFfQpkSpV4qUeK4Ordv64PnjR4Sb4PTKAkDnHZF9fwBmLYVBFWMh_xpeHPzstw-1VLrwVh29Kj5H0HAU4XeW46En8i16PflCH5jZJqXwU4nR1vs7rIkPbtKoWOAiBpaRz_EpqyK7jZ4JMqCH5esEKvcBA8AuIXRDT5e1CzRnwd_uYQbPZ8OG36SR4TMp_ZuTos_ojxgZlk"></a>
+<div class="flex items-center gap-4 md:gap-8">
+<nav class="hidden md:flex items-center gap-6"><a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors px-4 py-2" href="landing-b2b2c.html">Empresas</a><a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors px-4 py-2" href="#quienes-somos">Quiénes somos</a><a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors px-4 py-2" href="#contacto">Contacto</a></nav>
+<a class="hidden md:inline-flex bg-primary text-white font-label-md text-label-md px-8 py-3 rounded-full shadow-glow-primary hover:-translate-y-1 transition-all duration-300" href="#planes">Contratar</a>
+<label class="md:hidden cursor-pointer p-2 -mr-2 text-on-surface" for="mobile-menu-toggle" aria-label="Abrir menú"><span class="material-symbols-outlined text-3xl">menu</span></label>
+</div>
+</div>
+<input class="hidden peer" id="mobile-menu-toggle" type="checkbox">
+<nav class="hidden peer-checked:flex md:hidden flex-col gap-1 px-margin-mobile pb-6 pt-2 bg-white/95 dark:bg-surface-container/95 backdrop-blur-md border-t border-white/40">
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors px-2 py-3" href="landing-b2b2c.html">Empresas</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors px-2 py-3" href="#quienes-somos">Quiénes somos</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors px-2 py-3" href="#contacto">Contacto</a>
+<a class="bg-primary text-white font-label-md text-label-md px-6 py-3 rounded-full text-center mt-2" href="#planes">Contratar</a>
+</nav>
+</header>
 <main class="pt-32 pb-20 px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto space-y-32">
 <!-- Hero Section -->
 <section class="flex flex-col md:flex-row items-center gap-16 relative">
@@ -195,7 +221,7 @@
                     </a>
 </div>
 </div>
-<div class="flex-1 relative w-full h-[600px] flex justify-center items-center">
+<div class="flex-1 relative w-full h-[380px] md:h-[600px] flex justify-center items-center">
 <!-- Floating Glass Decorative Elements -->
 <div class="absolute inset-0 glass-panel rounded-full blur-2xl opacity-50 transform translate-x-10 -translate-y-10 w-[500px] h-[500px]"></div>
 
@@ -299,51 +325,51 @@
 <!-- Benefits Grid Detailed -->
 <section class="py-20">
 <h2 class="font-headline-lg text-headline-lg text-on-surface mb-16 text-center">Todo lo que necesitás en una solución integral</h2>
-<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<div class="flex overflow-x-auto snap-x snap-mandatory gap-4 pb-4 -mx-margin-mobile px-margin-mobile no-scrollbar md:grid md:grid-cols-3 md:gap-6 md:mx-0 md:px-0 md:pb-0 md:overflow-visible md:snap-none">
 <!-- Card 1 -->
-<div class="glass-panel p-8 rounded-[2rem] shadow-sm hover:shadow-antigravity hover:-translate-y-2 transition-all duration-300 flex flex-col gap-4">
+<div class="glass-panel p-8 rounded-[2rem] shadow-sm hover:shadow-antigravity hover:-translate-y-2 transition-all duration-300 flex flex-col gap-4 shrink-0 w-[82%] snap-start md:w-auto md:shrink">
 <div class="text-4xl mb-2">🧘‍♀️</div>
 <h3 class="font-headline-md text-headline-md">Tranquilidad total las 24hs</h3>
 <p class="font-body-md text-body-md text-on-surface-variant">Tranquilidad absoluta sabiendo que un sistema inteligente vela por tus seres queridos de manera continua. Monitoreo constante sin interferir en su rutina diaria, permitiéndoles mantener su independencia con seguridad.</p>
 </div>
 <!-- Card 2 (Spans 2 columns on desktop) -->
-<div class="glass-panel p-8 rounded-[2rem] shadow-sm hover:shadow-antigravity hover:-translate-y-2 transition-all duration-300 flex flex-col gap-4 md:col-span-2 relative overflow-hidden bg-gradient-to-br from-white/70 to-surface-container-highest/50">
+<div class="glass-panel p-8 rounded-[2rem] shadow-sm hover:shadow-antigravity hover:-translate-y-2 transition-all duration-300 flex flex-col gap-4 shrink-0 w-[82%] snap-start md:w-auto md:shrink md:col-span-2 relative overflow-hidden bg-gradient-to-br from-white/70 to-surface-container-highest/50">
 <div class="text-4xl mb-2 z-10">📍</div>
 <h3 class="font-headline-md text-headline-md z-10">Localización GPS precisa y zonas seguras</h3>
 <p class="font-body-md text-body-md text-on-surface-variant z-10 max-w-md">Conocé su ubicación exacta en tiempo real. Configura geocercas (zonas seguras) para recibir notificaciones si salen o entran a lugares específicos. Ideal para personas activas, salidas, paseos o prevención de desorientación.</p>
 </div>
 <!-- Card 3 -->
-<div class="glass-panel p-8 rounded-[2rem] shadow-sm hover:shadow-antigravity hover:-translate-y-2 transition-all duration-300 flex flex-col gap-4">
+<div class="glass-panel p-8 rounded-[2rem] shadow-sm hover:shadow-antigravity hover:-translate-y-2 transition-all duration-300 flex flex-col gap-4 shrink-0 w-[82%] snap-start md:w-auto md:shrink">
 <div class="text-4xl mb-2">⚠️</div>
 <h3 class="font-headline-md text-headline-md">Detección de Caídas</h3>
 <p class="font-body-md text-body-md text-on-surface-variant">Algoritmos avanzados que distinguen entre movimientos normales y caídas reales. Alerta automática al grupo familiar apenas se detecta un impacto, sin necesidad de pulsar ningún botón.</p>
 </div>
 <!-- Card 3b -->
-<div class="glass-panel p-8 rounded-[2rem] shadow-sm hover:shadow-antigravity hover:-translate-y-2 transition-all duration-300 flex flex-col gap-4">
+<div class="glass-panel p-8 rounded-[2rem] shadow-sm hover:shadow-antigravity hover:-translate-y-2 transition-all duration-300 flex flex-col gap-4 shrink-0 w-[82%] snap-start md:w-auto md:shrink">
 <div class="text-4xl mb-2">🆘</div>
 <h3 class="font-headline-md text-headline-md">Botón SOS</h3>
 <p class="font-body-md text-body-md text-on-surface-variant">El reloj tiene un botón de emergencia: manteniéndolo presionado unos segundos, envía una alerta inmediata al grupo familiar.</p>
 </div>
 <!-- Card A -->
-<div class="glass-panel p-8 rounded-[2rem] shadow-sm hover:shadow-antigravity hover:-translate-y-2 transition-all duration-300 flex flex-col gap-4">
+<div class="glass-panel p-8 rounded-[2rem] shadow-sm hover:shadow-antigravity hover:-translate-y-2 transition-all duration-300 flex flex-col gap-4 shrink-0 w-[82%] snap-start md:w-auto md:shrink">
 <div class="text-4xl mb-2">💓</div>
 <h3 class="font-headline-md text-headline-md">Monitoreo de Ritmo Cardíaco*</h3>
 <p class="font-body-md text-body-md text-on-surface-variant">Seguimiento continuo de la frecuencia cardíaca. Recibí alertas si se detectan valores fuera de lo normal, para actuar a tiempo.</p>
 </div>
 <!-- Card B -->
-<div class="glass-panel p-8 rounded-[2rem] shadow-sm hover:shadow-antigravity hover:-translate-y-2 transition-all duration-300 flex flex-col gap-4">
+<div class="glass-panel p-8 rounded-[2rem] shadow-sm hover:shadow-antigravity hover:-translate-y-2 transition-all duration-300 flex flex-col gap-4 shrink-0 w-[82%] snap-start md:w-auto md:shrink">
 <div class="text-4xl mb-2">🩸</div>
 <h3 class="font-headline-md text-headline-md">Oxigenación en Sangre (SpO2)*</h3>
 <p class="font-body-md text-body-md text-on-surface-variant">Mide el nivel de oxígeno en sangre las 24 horas. Una función clave para detectar problemas respiratorios o cardiovasculares a tiempo.</p>
 </div>
 <!-- Card 4 -->
-<div class="glass-panel p-8 rounded-[2rem] shadow-sm hover:shadow-antigravity hover:-translate-y-2 transition-all duration-300 flex flex-col gap-4">
+<div class="glass-panel p-8 rounded-[2rem] shadow-sm hover:shadow-antigravity hover:-translate-y-2 transition-all duration-300 flex flex-col gap-4 shrink-0 w-[82%] snap-start md:w-auto md:shrink">
 <div class="text-4xl mb-2">🔋</div>
 <h3 class="font-headline-md text-headline-md">Batería de larga duración</h3>
 <p class="font-body-md text-body-md text-on-surface-variant">Diseñado para durar varios días con una sola carga. Sistema de carga magnética súper sencillo, ideal para personas con movilidad reducida o problemas de visión, minimizando las preocupaciones diarias.</p>
 </div>
 <!-- Card 5 -->
-<div class="glass-panel p-8 rounded-[2rem] shadow-sm hover:shadow-antigravity hover:-translate-y-2 transition-all duration-300 flex flex-col gap-4">
+<div class="glass-panel p-8 rounded-[2rem] shadow-sm hover:shadow-antigravity hover:-translate-y-2 transition-all duration-300 flex flex-col gap-4 shrink-0 w-[82%] snap-start md:w-auto md:shrink">
 <div class="text-4xl mb-2">💧</div>
 <h3 class="font-headline-md text-headline-md">100% Resistente al agua (IP67)</h3>
 <p class="font-body-md text-body-md text-on-surface-variant">Totalmente apto para la ducha, el baño y el uso diario continuo. No necesitan quitárselo en ningún momento, garantizando protección incluso en los lugares de mayor riesgo de caídas del hogar.</p>
@@ -352,10 +378,10 @@
 <p class="font-body-md text-body-md text-on-surface-variant text-sm mt-8 max-w-2xl mx-auto text-center">*Los valores de signos vitales monitoreados por el reloj son aproximados y no reemplazan un diagnóstico médico profesional.</p>
 </section>
 <!-- Device Showcase -->
-<section class="py-32 flex flex-col md:flex-row items-center justify-between gap-16 relative">
+<section class="py-32 flex flex-col md:flex-row md:items-center justify-between gap-16 relative">
 <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-primary-fixed/30 rounded-full blur-[100px] -z-10"></div>
 <div class="flex-1 space-y-8">
-<h2 class="font-display-lg text-display-lg text-on-surface">Independencia total.<br><span class="text-primary text-headline-lg">No requiere celular.</span></h2>
+<h2 class="font-display-lg text-headline-lg md:text-display-lg text-on-surface">Independencia total.<br><span class="text-primary text-headline-lg">No requiere celular.</span></h2>
 <p class="font-body-lg text-body-lg text-on-surface-variant max-w-lg">El reloj de JaiCARE tiene conectividad propia integrada. Quien lo usa no necesita llevar un teléfono consigo ni aprender a usar aplicaciones complejas. Simplemente ponérselo y vivir su día a día con total libertad.</p>
 <ul class="space-y-4 pt-4">
 <li class="flex items-center gap-3 font-body-md text-body-md">
@@ -384,9 +410,9 @@
 <!-- Testimonials Section -->
 <section class="py-20">
 <h2 class="font-headline-lg text-headline-lg text-on-surface mb-16 text-center">Historias que importan</h2>
-<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<div class="flex overflow-x-auto snap-x snap-mandatory gap-4 pb-4 -mx-margin-mobile px-margin-mobile no-scrollbar md:grid md:grid-cols-3 md:gap-8 md:mx-0 md:px-0 md:pb-0 md:overflow-visible md:snap-none">
 <!-- Testimonial 1 -->
-<div class="glass-panel p-8 rounded-[2rem] shadow-sm flex flex-col gap-6 relative">
+<div class="glass-panel p-8 rounded-[2rem] shadow-sm flex flex-col gap-6 relative shrink-0 w-[85%] snap-start md:w-auto md:shrink">
 <span class="material-symbols-outlined text-primary-fixed-dim text-6xl absolute top-6 right-6 opacity-20">format_quote</span>
 <p class="font-body-md text-body-md text-on-surface-variant italic relative z-10">"Mi mamá vive sola y siempre estaba preocupada de que se cayera y no pudiera avisarme. Desde que usa JaiCARE, duermo tranquila. El mes pasado se mareó, el reloj detectó la caída y me llamó al instante."</p>
 <div class="flex items-center gap-4 mt-auto">
@@ -398,7 +424,7 @@
 </div>
 </div>
 <!-- Testimonial 2 -->
-<div class="glass-panel p-8 rounded-[2rem] shadow-sm flex flex-col gap-6 relative transform md:-translate-y-4">
+<div class="glass-panel p-8 rounded-[2rem] shadow-sm flex flex-col gap-6 relative shrink-0 w-[85%] snap-start md:w-auto md:shrink transform md:-translate-y-4">
 <span class="material-symbols-outlined text-primary-fixed-dim text-6xl absolute top-6 right-6 opacity-20">format_quote</span>
 <p class="font-body-md text-body-md text-on-surface-variant italic relative z-10">"A mi papá le diagnosticaron principio de Alzheimer, pero le encanta salir a caminar. Con la función de GPS de JaiCARE, le damos su espacio y nosotros sabemos siempre dónde está. Nos devolvió la paz familiar."</p>
 <div class="flex items-center gap-4 mt-auto">
@@ -410,7 +436,7 @@
 </div>
 </div>
 <!-- Testimonial 3 -->
-<div class="glass-panel p-8 rounded-[2rem] shadow-sm flex flex-col gap-6 relative">
+<div class="glass-panel p-8 rounded-[2rem] shadow-sm flex flex-col gap-6 relative shrink-0 w-[85%] snap-start md:w-auto md:shrink">
 <span class="material-symbols-outlined text-primary-fixed-dim text-6xl absolute top-6 right-6 opacity-20">format_quote</span>
 <p class="font-body-md text-body-md text-on-surface-variant italic relative z-10">"No quería usar 'aparatos de viejo'. Pero este reloj es muy lindo y moderno. Además de ver la hora, me siento acompañada y sé que si algo me pasa en la ducha, mis nietos lo sabrán enseguida."</p>
 <div class="flex items-center gap-4 mt-auto">
@@ -551,9 +577,9 @@
 <span class="bg-[#e0f2f1] text-[#006d2f] text-xs font-bold px-3 py-1 rounded-full">Ahorrás 10%</span>
 </div>
 </div>
-<div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch">
+<div class="flex overflow-x-auto snap-x snap-mandatory gap-4 pb-4 -mx-margin-mobile px-margin-mobile no-scrollbar md:grid md:grid-cols-3 md:gap-8 md:items-stretch md:mx-0 md:px-0 md:pb-0 md:overflow-visible md:snap-none">
 <!-- Plan Tranquilidad -->
-<div class="glass-panel p-8 rounded-[2rem] border border-outline-variant/30 flex flex-col">
+<div class="glass-panel p-8 rounded-[2rem] border border-outline-variant/30 flex flex-col shrink-0 w-[85%] snap-start md:w-auto md:shrink">
 <div class="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center mb-6">
 <span class="material-symbols-outlined text-primary">watch</span>
 </div>
@@ -578,7 +604,7 @@
 <button class="w-full py-4 rounded-xl border border-primary text-primary font-label-md hover:bg-primary/5 transition-colors">Elegir Tranquilidad</button>
 </div>
 <!-- Plan Cuidado (Featured) -->
-<div class="glass-panel p-8 rounded-[2rem] border-2 border-primary relative flex flex-col shadow-antigravity">
+<div class="glass-panel p-8 rounded-[2rem] border-2 border-primary relative flex flex-col shadow-antigravity shrink-0 w-[85%] snap-start md:w-auto md:shrink">
 <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-primary text-white text-xs font-bold px-4 py-1 rounded-full uppercase tracking-wider">Más elegido</div>
 <div class="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center mb-6">
 <span class="material-symbols-outlined text-primary">pill</span>
@@ -601,7 +627,7 @@
 <button class="w-full py-4 rounded-xl bg-primary text-white font-label-md shadow-glow-primary hover:opacity-90 transition-opacity">Elegir Cuidado</button>
 </div>
 <!-- Plan Compañía -->
-<div class="glass-panel p-8 rounded-[2rem] border border-outline-variant/30 flex flex-col">
+<div class="glass-panel p-8 rounded-[2rem] border border-outline-variant/30 flex flex-col shrink-0 w-[85%] snap-start md:w-auto md:shrink">
 <div class="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center mb-6">
 <span class="material-symbols-outlined text-primary">chat_bubble</span>
 </div>
@@ -691,7 +717,7 @@
 <section class="py-20 max-w-6xl mx-auto px-4" id="contacto">
 <div class="glass-panel flex flex-col md:flex-row rounded-[2rem] overflow-hidden shadow-antigravity">
 <!-- Left Side -->
-<div class="flex-1 bg-gradient-to-br from-primary to-primary-container p-12 flex flex-col justify-center rounded-l-[2rem]">
+<div class="flex-1 bg-gradient-to-br from-primary to-primary-container p-8 md:p-12 flex flex-col justify-center rounded-t-[2rem] md:rounded-t-none md:rounded-l-[2rem]">
 <h2 class="font-headline-lg text-headline-lg text-white mb-2">¿Tenés alguna duda?</h2>
 <h3 class="font-headline-md text-headline-md text-white mb-6">Estamos para ayudarte</h3>
 <p class="font-body-md text-body-md text-white/80 mb-10">Si ya viste los planes arriba y te quedó alguna pregunta sobre el producto, la instalación o cómo funciona, escribinos.</p>
@@ -711,7 +737,7 @@
 </ul>
 </div>
 <!-- Right Side -->
-<div class="flex-1 bg-white p-12 flex flex-col justify-center rounded-r-[2rem]">
+<div class="flex-1 bg-white p-8 md:p-12 flex flex-col justify-center rounded-b-[2rem] md:rounded-b-none md:rounded-r-[2rem]">
 <h3 class="font-headline-md text-headline-md text-on-surface mb-2">Escribinos tu consulta</h3>
 <p class="font-body-md text-body-md text-on-surface-variant mb-8">Contanos qué necesitás saber y te respondemos por WhatsApp.</p>
 <form class="space-y-6">
@@ -738,7 +764,7 @@
 </section>
 </main>
 <!-- Footer -->
-<footer class="w-full py-20 px-margin-desktop flex flex-col md:flex-row justify-between gap-gutter bg-surface-container-low dark:bg-surface-container-lowest mt-20">
+<footer class="w-full py-20 px-margin-mobile md:px-margin-desktop flex flex-col md:flex-row justify-between gap-gutter bg-surface-container-low dark:bg-surface-container-lowest mt-20">
 <div class="flex flex-col gap-4">
 <div class="flex items-center w-[150px] mb-4"><img alt="JaiCARE Logo" class="w-full h-auto" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAeqenUQjH85fgN_cTLP_3kUfyX3SyingBiXAw2Tbby09rtx0cnYbzhGG0cagYEniDqziLsxA55FQnsj-4lPxB2ryblxKY3DC8qO4VryJfl3c8OpxPUDxW5ei_9xHC7KKVx2uD7jIWqBsdL2bdV201Qfq-MhV0DNeXrCVYVA-uT8eIP1BmMBhrxKXhSZre06doQNdeRrGsCfgvlyXNCjyy2l5omSoE4oXkI57RhXTwlesO-6hSR4YO-SXQ1SbsAw16BBHk"></div>
 <p class="font-body-md text-body-md text-tertiary dark:text-tertiary-fixed-dim max-w-sm">

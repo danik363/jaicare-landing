@@ -105,6 +105,10 @@
         }
     </script>
 <style>
+        /* Fix (2026-08-12): sin overflow-x-hidden en html/body quedaba scroll
+           horizontal "fantasma" en mobile por elementos decorativos que se
+           desbordan a propósito (blur-3xl). */
+        html, body { overflow-x: hidden; }
         .glass-card {
             background: rgba(255, 255, 255, 0.7);
             backdrop-filter: blur(20px);
@@ -143,11 +147,31 @@
             100% { transform: translateX(-50%); }
         }
         .animate-marquee:hover { animation-play-state: paused; }
+        /* Carrusel horizontal mobile (2026-08-12): scroll manual con snap, sin
+           flechas ni autoplay. En md+ vuelve a ser grid normal (ver md:grid). */
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
     </style>
 </head>
 <body class="antigravity-bg text-on-surface font-body-md min-h-screen flex flex-col pt-20">
 <!-- TopNavBar -->
-<header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-margin-desktop py-4 bg-white/70 dark:bg-surface-container/70 backdrop-blur-md border-b border-white/60 dark:border-outline-variant/20 shadow-[0_24px_48px_rgba(15,40,65,0.08)]"><a class="flex items-center hover:scale-95 transition-all duration-200 cursor-pointer w-[180px]" href="landing-b2c.html"><img alt="JaiCARE Logo" class="w-full h-auto" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAyO5gM2ySDA8SL01xSdvkNco76_eM8cOzXWnR3OY6qpUyNbqErFzzUb_AYFCJkSUvaOf6X1UBJYz7-q7RHKVDoZf3e02CY7LAU3Hu30_biDBLSx7-tDPN8ZF4iC-risAMyEaDFfMU8N0aaqJmE-JT8KPGZ4JEVmLUGvzDM72k3IQVGKylvZnoVkhr-hRHJkXTv-ANQ8SlGYVQSMgQqrpy6PqMCOp1qTWSS4ZaS_CbO6LMSsECIgSe7cMYSUnnpq36D2nY"></a><div class="flex items-center gap-8"><nav class="hidden md:flex items-center gap-6"><a class="font-label-md text-label-md text-primary border-b-2 border-primary px-4 py-2" href="landing-b2b2c.html">Empresas</a><a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors px-4 py-2" href="#quienes-somos">Quiénes somos</a><a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors px-4 py-2" href="#contacto">Contacto</a></nav><a class="bg-primary text-white font-label-md text-label-md px-8 py-3 rounded-full shadow-glow-primary hover:-translate-y-1 transition-all duration-300" href="#contacto">Solicitar Propuesta</a></div></header>
+<header class="fixed top-0 left-0 w-full z-50 bg-white/70 dark:bg-surface-container/70 backdrop-blur-md border-b border-white/60 dark:border-outline-variant/20 shadow-[0_24px_48px_rgba(15,40,65,0.08)]">
+<div class="flex justify-between items-center px-margin-mobile md:px-margin-desktop py-4">
+<a class="flex items-center hover:scale-95 transition-all duration-200 cursor-pointer w-[140px] md:w-[180px]" href="landing-b2c.html"><img alt="JaiCARE Logo" class="w-full h-auto" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAyO5gM2ySDA8SL01xSdvkNco76_eM8cOzXWnR3OY6qpUyNbqErFzzUb_AYFCJkSUvaOf6X1UBJYz7-q7RHKVDoZf3e02CY7LAU3Hu30_biDBLSx7-tDPN8ZF4iC-risAMyEaDFfMU8N0aaqJmE-JT8KPGZ4JEVmLUGvzDM72k3IQVGKylvZnoVkhr-hRHJkXTv-ANQ8SlGYVQSMgQqrpy6PqMCOp1qTWSS4ZaS_CbO6LMSsECIgSe7cMYSUnnpq36D2nY"></a>
+<div class="flex items-center gap-4 md:gap-8">
+<nav class="hidden md:flex items-center gap-6"><a class="font-label-md text-label-md text-primary border-b-2 border-primary px-4 py-2" href="landing-b2b2c.html">Empresas</a><a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors px-4 py-2" href="#quienes-somos">Quiénes somos</a><a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors px-4 py-2" href="#contacto">Contacto</a></nav>
+<a class="hidden md:inline-flex bg-primary text-white font-label-md text-label-md px-8 py-3 rounded-full shadow-glow-primary hover:-translate-y-1 transition-all duration-300" href="#contacto">Solicitar Propuesta</a>
+<label class="md:hidden cursor-pointer p-2 -mr-2 text-on-surface" for="mobile-menu-toggle" aria-label="Abrir menú"><span class="material-symbols-outlined text-3xl">menu</span></label>
+</div>
+</div>
+<input class="hidden peer" id="mobile-menu-toggle" type="checkbox">
+<nav class="hidden peer-checked:flex md:hidden flex-col gap-1 px-margin-mobile pb-6 pt-2 bg-white/95 dark:bg-surface-container/95 backdrop-blur-md border-t border-white/40">
+<a class="font-label-md text-label-md text-primary px-2 py-3" href="landing-b2b2c.html">Empresas</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors px-2 py-3" href="#quienes-somos">Quiénes somos</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors px-2 py-3" href="#contacto">Contacto</a>
+<a class="bg-primary text-white font-label-md text-label-md px-6 py-3 rounded-full text-center mt-2" href="#contacto">Solicitar Propuesta</a>
+</nav>
+</header>
 <!-- 1. HERO -->
 <section class="py-section-padding px-margin-mobile md:px-gutter max-w-container-max mx-auto">
 <div class="grid grid-cols-1 md:grid-cols-2 gap-gutter items-center">
@@ -245,38 +269,38 @@
 <section class="py-section-padding bg-surface-container-low/50">
 <div class="px-margin-mobile md:px-gutter max-w-container-max mx-auto">
 <h2 class="font-headline-md text-headline-md text-center text-primary mb-stack-lg">Beneficios para la empresa</h2>
-<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
-<div class="glass-card rounded-xl p-6 flex flex-col items-center text-center">
+<div class="flex overflow-x-auto snap-x snap-mandatory gap-4 pb-4 -mx-margin-mobile px-margin-mobile no-scrollbar md:grid md:grid-cols-3 md:gap-gutter md:mx-0 md:px-0 md:pb-0 md:overflow-visible md:snap-none">
+<div class="glass-card rounded-xl p-6 flex flex-col items-center text-center shrink-0 w-[75%] snap-start md:w-auto md:shrink">
 <div class="w-12 h-12 rounded-full bg-primary/10 text-primary flex items-center justify-center mb-4">
 <span class="material-symbols-outlined text-2xl">group_add</span>
 </div>
 <h4 class="font-label-bold text-lg mb-2">Atracción y retención de talento</h4>
 </div>
-<div class="glass-card rounded-xl p-6 flex flex-col items-center text-center">
+<div class="glass-card rounded-xl p-6 flex flex-col items-center text-center shrink-0 w-[75%] snap-start md:w-auto md:shrink">
 <div class="w-12 h-12 rounded-full bg-primary/10 text-primary flex items-center justify-center mb-4">
 <span class="material-symbols-outlined text-2xl">trending_down</span>
 </div>
 <h4 class="font-label-bold text-lg mb-2">Reducción de ausentismo</h4>
 </div>
-<div class="glass-card rounded-xl p-6 flex flex-col items-center text-center">
+<div class="glass-card rounded-xl p-6 flex flex-col items-center text-center shrink-0 w-[75%] snap-start md:w-auto md:shrink">
 <div class="w-12 h-12 rounded-full bg-primary/10 text-primary flex items-center justify-center mb-4">
 <span class="material-symbols-outlined text-2xl">check_circle</span>
 </div>
 <h4 class="font-label-bold text-lg mb-2">Cero carga administrativa (nosotros gestionamos todo)</h4>
 </div>
-<div class="glass-card rounded-xl p-6 flex flex-col items-center text-center">
+<div class="glass-card rounded-xl p-6 flex flex-col items-center text-center shrink-0 w-[75%] snap-start md:w-auto md:shrink">
 <div class="w-12 h-12 rounded-full bg-primary/10 text-primary flex items-center justify-center mb-4">
 <span class="material-symbols-outlined text-2xl">star</span>
 </div>
 <h4 class="font-label-bold text-lg mb-2">Diferenciación frente a la competencia</h4>
 </div>
-<div class="glass-card rounded-xl p-6 flex flex-col items-center text-center">
+<div class="glass-card rounded-xl p-6 flex flex-col items-center text-center shrink-0 w-[75%] snap-start md:w-auto md:shrink">
 <div class="w-12 h-12 rounded-full bg-primary/10 text-primary flex items-center justify-center mb-4">
 <span class="material-symbols-outlined text-2xl">business</span>
 </div>
 <h4 class="font-label-bold text-lg mb-2">Fortalece tu marca empleadora</h4>
 </div>
-<div class="glass-card rounded-xl p-6 flex flex-col items-center text-center">
+<div class="glass-card rounded-xl p-6 flex flex-col items-center text-center shrink-0 w-[75%] snap-start md:w-auto md:shrink">
 <div class="w-12 h-12 rounded-full bg-primary/10 text-primary flex items-center justify-center mb-4">
 <span class="material-symbols-outlined text-2xl">trending_up</span>
 </div>
@@ -464,7 +488,7 @@
 </div>
 </section>
 <!-- Footer -->
-<footer class="w-full py-20 px-margin-desktop flex flex-col md:flex-row justify-between gap-gutter bg-surface-container-low dark:bg-surface-container-lowest mt-20">
+<footer class="w-full py-20 px-margin-mobile md:px-margin-desktop flex flex-col md:flex-row justify-between gap-gutter bg-surface-container-low dark:bg-surface-container-lowest mt-20">
 <div class="flex flex-col gap-4">
 <div class="flex items-center w-[150px] mb-4"><img alt="JaiCARE Logo" class="w-full h-auto" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAD_tusN72Nn4vRWaMO6edB8qfxWKTOGJ2BNvLkY8EMajvb2SyU7QLaYNUmTXNWt-5VFSiO34WVRZRiUOel5djTYD1g4izNWuVet2MqostOffYMTGRGFJs9oLHMpC1sf_SmvzA1TvbtrHLy96x5DQVjKt_VH_dTWQrATUxhG1Tp3m4HPCYk9Atwf1AmaumRnrVytq8TsVDTN17bG-cpKKmlBn2OfMIRkpIfwxTit1jnGYgZz_WIpFZFB34vN_OZEwpRQpw"></div>
 <p class="font-body-md text-body-md text-tertiary dark:text-tertiary-fixed-dim max-w-sm">

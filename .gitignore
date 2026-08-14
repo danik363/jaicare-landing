@@ -1,3 +1,10 @@
 # Restos del experimento descartado de reloj 3D (Blender/Hyper3D) — ver guion-video-bienestar.md
 blender-mcp/
 img/reloj-3d.glb
+
+# Config local de Claude Code, no es parte del proyecto
+.claude/
+
+# Archivos de scratch/prueba, no forman parte del sitio final
+_mobile-preview.html
+img/vieja.jpg
