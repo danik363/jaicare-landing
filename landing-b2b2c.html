@@ -233,7 +233,7 @@
 <p class="font-label-bold text-label-bold text-on-surface-variant">Días productivos perdidos por mes en promedio.</p>
 </div>
 </div>
-<p class="text-xs text-on-surface-variant/60 mt-4">Fuente: Value in Health (2022), basado en el National Study of Caregiving y el National Health and Aging Trends Study (EE.UU.).</p>
+<p class="text-xs text-on-surface-variant/80 mt-4">Fuente: Value in Health (2022), basado en el National Study of Caregiving y el National Health and Aging Trends Study (EE.UU.).</p>
 </div>
 </div>
 </div></div>
@@ -398,47 +398,47 @@
 <h2 class="font-headline-md text-headline-md text-center text-primary mb-stack-lg">Preguntas Frecuentes</h2>
 <div class="space-y-4">
 <div class="glass-card rounded-lg overflow-hidden">
-<button class="accordion-header w-full flex justify-between items-center p-6 text-left">
+<button class="accordion-header w-full flex justify-between items-center p-6 text-left" aria-expanded="false" aria-controls="faq-b2b2c-1">
 <span class="font-label-bold text-lg">¿Cómo se gestiona la entrega de los relojes a los empleados?</span>
 <span class="material-symbols-outlined text-primary">add</span>
 </button>
-<div class="hidden px-6 pb-6 text-on-surface-variant">
+<div class="hidden px-6 pb-6 text-on-surface-variant" id="faq-b2b2c-1">
 <p class="">Coordinamos la logística directamente con la empresa o con cada empleado, según la preferencia de la organización.</p>
 </div>
 </div>
 <div class="glass-card rounded-lg overflow-hidden">
-<button class="accordion-header w-full flex justify-between items-center p-6 text-left">
+<button class="accordion-header w-full flex justify-between items-center p-6 text-left" aria-expanded="false" aria-controls="faq-b2b2c-2">
 <span class="font-label-bold text-lg">¿La empresa recibe una factura única o por empleado?</span>
 <span class="material-symbols-outlined text-primary">add</span>
 </button>
-<div class="hidden px-6 pb-6 text-on-surface-variant">
+<div class="hidden px-6 pb-6 text-on-surface-variant" id="faq-b2b2c-2">
 <p class="">Emitimos una factura consolidada mensual o anual a nombre de la empresa, facilitando la gestión administrativa.</p>
 </div>
 </div>
 <div class="glass-card rounded-lg overflow-hidden">
-<button class="accordion-header w-full flex justify-between items-center p-6 text-left">
+<button class="accordion-header w-full flex justify-between items-center p-6 text-left" aria-expanded="false" aria-controls="faq-b2b2c-3">
 <span class="font-label-bold text-lg">¿Hay una cantidad mínima de empleados para contratar?</span>
 <span class="material-symbols-outlined text-primary">add</span>
 </button>
-<div class="hidden px-6 pb-6 text-on-surface-variant">
+<div class="hidden px-6 pb-6 text-on-surface-variant" id="faq-b2b2c-3">
 <p class="">Trabajamos con empresas de todos los tamaños. Contactanos para armar una propuesta a medida.</p>
 </div>
 </div>
 <div class="glass-card rounded-lg overflow-hidden">
-<button class="accordion-header w-full flex justify-between items-center p-6 text-left">
+<button class="accordion-header w-full flex justify-between items-center p-6 text-left" aria-expanded="false" aria-controls="faq-b2b2c-4">
 <span class="font-label-bold text-lg">¿El familiar mayor necesita instalar o configurar algo?</span>
 <span class="material-symbols-outlined text-primary">add</span>
 </button>
-<div class="hidden px-6 pb-6 text-on-surface-variant">
+<div class="hidden px-6 pb-6 text-on-surface-variant" id="faq-b2b2c-4">
 <p class="">No, el reloj se entrega preconfigurado y listo para usar. Solo necesitan encenderlo.</p>
 </div>
 </div>
 <div class="glass-card rounded-lg overflow-hidden">
-<button class="accordion-header w-full flex justify-between items-center p-6 text-left">
+<button class="accordion-header w-full flex justify-between items-center p-6 text-left" aria-expanded="false" aria-controls="faq-b2b2c-5">
 <span class="font-label-bold text-lg">¿Podemos dar de baja o reasignar relojes si cambia la nómina?</span>
 <span class="material-symbols-outlined text-primary">add</span>
 </button>
-<div class="hidden px-6 pb-6 text-on-surface-variant">
+<div class="hidden px-6 pb-6 text-on-surface-variant" id="faq-b2b2c-5">
 <p class="">Sí, ofrecemos flexibilidad para reasignar licencias o dar de baja dispositivos según los cambios en el equipo.</p>
 </div>
 </div>
@@ -508,13 +508,11 @@
             button.addEventListener('click', () => {
                 const content = button.nextElementSibling;
                 const icon = button.querySelector('.material-symbols-outlined');
-                
+
                 content.classList.toggle('hidden');
-                if(content.classList.contains('hidden')) {
-                    icon.textContent = 'add';
-                } else {
-                    icon.textContent = 'remove';
-                }
+                const isOpen = !content.classList.contains('hidden');
+                button.setAttribute('aria-expanded', isOpen);
+                icon.textContent = isOpen ? 'remove' : 'add';
             });
         });
     </script>
